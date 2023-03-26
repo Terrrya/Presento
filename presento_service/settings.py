@@ -32,7 +32,7 @@ DEBUG = os.getenv("DJANGO_DEBUG", "") != "False"
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
-    "https://test-presento.onrender.com",
+    "test-presento.onrender.com",
 ]
 
 
