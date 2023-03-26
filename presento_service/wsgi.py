@@ -1,5 +1,5 @@
 """
-WSGI config for Presento_project project.
+WSGI config for presento project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
