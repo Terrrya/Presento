@@ -1,8 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from user.models import User
-
 
 class UserSerializer(serializers.ModelSerializer):
     """User (customer) model."""
@@ -11,7 +9,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = (
             "id",
-            "username",
             "email",
             "first_name",
             "last_name",
@@ -22,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {"password": {"write_only": True, "min_length": 8}}
 
     def create(self, validated_data):
-        """Create new user with encrypted password and returned it"""
+        """Create a new user with encrypted password and return it"""
         return get_user_model().objects.create_user(**validated_data)
 
     def update(self, instance, validated_data):
