@@ -1,0 +1,45 @@
+.app {
+  // text-align: center;
+  background: #ffeefc;
+  &__title {
+    margin-top: 160px;
+    font-size: 48px;
+  }
+
+  &__description {
+    font-size: 24px;
+  }
+
+  &__content {
+    height: calc(100vh - 80px - 75px);
+    // background-image: url(../images/background.jpg);
+    // background-size: cover;
+    // background-repeat: no-repeat;
+  }
+
+  &__footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+}
+
+.form {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #eee;
+  max-width: 800px;
+  &__title {
+    text-align: center;
+  }
+  &__submit {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+  }
+  &__link {
+    display: block;
+    margin: 0 auto;
+  }
+}
