@@ -49,12 +49,14 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "gift",
     "user",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -149,3 +151,5 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
     ]
 }
+
+CORS_ORIGIN_WHITELIST = "test-presento.onrender.com"
