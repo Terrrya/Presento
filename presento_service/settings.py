@@ -152,4 +152,5 @@ REST_FRAMEWORK = {
     ]
 }
 
-CORS_ORIGIN_WHITELIST = ("https://test-presento.onrender.com",)
+# CORS_ORIGIN_WHITELIST = ("https://test-presento.onrender.com",)
+CORS_ORIGIN_ALLOW_ALL = True
