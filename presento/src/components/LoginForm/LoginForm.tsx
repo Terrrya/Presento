@@ -3,22 +3,50 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import { loginUserOnServer } from '../../api/user';
+import { Login } from '../../types/Login';
+import { Token } from '../../types/Token';
 
 const schema = yup.object().shape({
-  email: yup.string().required('Email is required'),
+  email: yup
+    .string()
+    .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, 'Please enter email in right format')
+    .required('Email is required'),
   password: yup.string().required('Password is required')
 });
 
 type Props = {
+  handleSetIsForm: (isForm: boolean) => void;
   handleSetSignUp: (isSignIn: boolean) => void;
+  handleSetToken: (token: Token) => void;
 };
 
-export const LoginForm: React.FC<Props> = ({ handleSetSignUp }) => {
+export const LoginForm: React.FC<Props> = ({ handleSetSignUp, handleSetToken, handleSetIsForm }) => {
+  const createToken = (loginData: Login) => {
+    const loginUser = async () => {
+      try {
+        const token = await loginUserOnServer(loginData);
+        console.log(token);
+        handleSetToken(token);
+      } catch (error) {
+        console.log('loginError');
+        console.log(error);
+      }
+    };
+
+    loginUser();
+  };
+
   return (
     <Formik
       validationSchema={schema}
-      onSubmit={(values) => {
-        alert(JSON.stringify(values, null, 2));
+      onSubmit={({ email, password }) => {
+        createToken({
+          email,
+          password
+        });
+
+        handleSetIsForm(false)
       }}
       initialValues={{
         email: '',

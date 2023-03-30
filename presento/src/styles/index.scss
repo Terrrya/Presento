@@ -1,7 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
+@import "utils";
 
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -9,10 +9,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
-}
 
-@import "./app";
-@import "./header";
-@import "./footer.scss";
+@import "blocks/app.scss";
+
+@import "blocks/header.scss";
+@import "blocks/footer.scss";

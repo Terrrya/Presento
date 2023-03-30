@@ -14,6 +14,13 @@
   &__link {
     font-size: 42px;
 
+    &--1 {
+      color: #0d6efd;
+      &:hover {
+        color: #215fbb;
+      }
+    }
+
     &--2 {
       color: #a83371;
       &:hover {

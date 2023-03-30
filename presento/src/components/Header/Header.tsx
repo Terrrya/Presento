@@ -13,7 +13,7 @@ export const Header: React.FC<Props> = ({ handleSetSignUp, handleSetIsForm }) =>
   return (
     <header className="app__header header">
       <Stack direction="horizontal" gap={3} className="header">
-        <a href='/' className="header__logo-container">
+        <a href="/" className="header__logo-container">
           <img src={logo} alt="Presento" height="80px" />
         </a>
 

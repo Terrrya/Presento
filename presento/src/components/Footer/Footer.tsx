@@ -16,13 +16,13 @@ export const Footer: React.FC = () => {
       <div className="footer__right-container">
         <div className="footer__link-continer">
           Our Team:
-          <a href="https://github.com/Terrrya" target='_blank' rel="noreferrer">
+          <a href="https://github.com/Terrrya" target="_blank" rel="noreferrer">
             <i className="fa-brands fa-github footer__link footer__link--1"></i>
           </a>
-          <a href="https://github.com/OksanaBaloh" target='_blank' rel="noreferrer">
+          <a href="https://github.com/OksanaBaloh" target="_blank" rel="noreferrer">
             <i className="fa-brands fa-github footer__link footer__link--2"></i>
           </a>
-          <a href="https://github.com/DariaRykhliuk" target='_blank' rel="noreferrer">
+          <a href="https://github.com/DariaRykhliuk" target="_blank" rel="noreferrer">
             <i className="fa-brands fa-github footer__link footer__link--3"></i>
           </a>
         </div>

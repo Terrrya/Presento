@@ -1,8 +1,10 @@
 import React from 'react';
+import { createUserOnServer } from '../../api/user';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import { User } from '../../types/User';
 
 const schema = yup.object().shape({
   firstName: yup.string().required('First name is required'),
@@ -31,11 +33,29 @@ type Props = {
 };
 
 export const SignUpForm: React.FC<Props> = ({ handleSetSignUp }) => {
+  const createUser = (user: User) => {
+    const createNewUser = async () => {
+      try {
+        // await createUserOnServer(user);
+        const createdUser = await createUserOnServer(user);
+        console.log(createdUser);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    createNewUser();
+  };
   return (
     <Formik
       validationSchema={schema}
-      onSubmit={(values) => {
-        alert(JSON.stringify(values, null, 2));
+      onSubmit={({ email, firstName, lastName, password }) => {
+        createUser({
+          email,
+          first_name: firstName,
+          last_name: lastName,
+          password
+        });
       }}
       initialValues={{
         firstName: '',
@@ -97,6 +117,7 @@ export const SignUpForm: React.FC<Props> = ({ handleSetSignUp }) => {
               type="password"
               placeholder="Password"
               name="password"
+              autoComplete="off"
               value={values.password}
               onChange={handleChange}
               isValid={touched.password && !errors.password}
@@ -111,6 +132,7 @@ export const SignUpForm: React.FC<Props> = ({ handleSetSignUp }) => {
               type="password"
               placeholder="Repeat password"
               name="repeatPassword"
+              autoComplete="off"
               value={values.repeatPassword}
               onChange={handleChange}
               isValid={touched.repeatPassword && !errors.repeatPassword}
