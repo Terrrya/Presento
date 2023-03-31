@@ -8,7 +8,7 @@ export const createUserOnServer = (data: User) => {
 };
 
 export const loginUserOnServer = (data: Login) => {
-  return client.post<Token>('/api/user/login/', data);
+  return client.post<Token>('/api/user/token/', data);
 };
 
 export const getUserInfoFromServer = () => {
