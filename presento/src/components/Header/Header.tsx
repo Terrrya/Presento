@@ -3,40 +3,27 @@ import Stack from 'react-bootstrap/Stack';
 import Button from 'react-bootstrap/Button';
 import logo from '../..//images/logo.png';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-type Props = {
-  handleSetSignUp: (isSignUp: boolean) => void;
-  handleSetIsForm: (isForm: boolean) => void;
-};
+// type Props = {
 
-export const Header: React.FC<Props> = ({ handleSetSignUp, handleSetIsForm }) => {
+// };
+
+export const Header: React.FC = () => {
   return (
     <header className="app__header header">
       <Stack direction="horizontal" gap={3} className="header">
-        <a href="/" className="header__logo-container">
+        <Link to="/" className="header__logo-container">
           <img src={logo} alt="Presento" height="80px" />
-        </a>
+        </Link>
 
-        <Button
-          className="ms-auto"
-          variant="primary"
-          onClick={() => {
-            handleSetIsForm(true);
-            handleSetSignUp(false);
-          }}
-        >
-          Sign Up
-        </Button>
+        <Link to="sign-up" className="ms-auto">
+          <Button variant="primary">Sign Up</Button>
+        </Link>
 
-        <Button
-          variant="primary"
-          onClick={() => {
-            handleSetIsForm(true);
-            handleSetSignUp(true);
-          }}
-        >
-          Sign In
-        </Button>
+        <Link to="login">
+          <Button variant="primary">Sign In</Button>
+        </Link>
       </Stack>
     </header>
   );

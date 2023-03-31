@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { User } from '../../types/User';
+import { Link } from 'react-router-dom';
 
 const schema = yup.object().shape({
   firstName: yup.string().required('First name is required'),
@@ -28,11 +29,11 @@ const schema = yup.object().shape({
     .oneOf([yup.ref('password')], 'Please enter the same password as above.')
 });
 
-type Props = {
-  handleSetSignUp: (isSignIn: boolean) => void;
-};
+// type Props = {
+//   handleSetSignUp: (isSignIn: boolean) => void;
+// };
 
-export const SignUpForm: React.FC<Props> = ({ handleSetSignUp }) => {
+export const SignUpForm: React.FC = () => {
   const createUser = (user: User) => {
     const createNewUser = async () => {
       try {
@@ -145,9 +146,9 @@ export const SignUpForm: React.FC<Props> = ({ handleSetSignUp }) => {
             Submit form
           </Button>
 
-          <Button variant="link" onClick={() => handleSetSignUp(true)} className="form__link">
-            Have an account?
-          </Button>
+          <Link to="/login" className="form__link">
+            <Button variant="link">Have an account?</Button>
+          </Link>
         </Form>
       )}
     </Formik>

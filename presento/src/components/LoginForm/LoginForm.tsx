@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import * as yup from 'yup';
@@ -6,6 +6,8 @@ import { Formik } from 'formik';
 import { loginUserOnServer } from '../../api/user';
 import { Login } from '../../types/Login';
 import { Token } from '../../types/Token';
+import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../utils/useToken';
 
 const schema = yup.object().shape({
   email: yup
@@ -16,18 +18,20 @@ const schema = yup.object().shape({
 });
 
 type Props = {
-  handleSetIsForm: (isForm: boolean) => void;
-  handleSetSignUp: (isSignIn: boolean) => void;
   handleSetToken: (token: Token) => void;
 };
 
-export const LoginForm: React.FC<Props> = ({ handleSetSignUp, handleSetToken, handleSetIsForm }) => {
+export const LoginForm: React.FC<Props> = ({ handleSetToken }) => {
+  const { setToken } = useToken();
+  const [value, setValue] = useState('');
+  const navigate = useNavigate();
+
   const createToken = (loginData: Login) => {
     const loginUser = async () => {
       try {
         const token = await loginUserOnServer(loginData);
         console.log(token);
-        handleSetToken(token);
+        setToken(token);
       } catch (error) {
         console.log('loginError');
         console.log(error);
@@ -46,7 +50,8 @@ export const LoginForm: React.FC<Props> = ({ handleSetSignUp, handleSetToken, ha
           password
         });
 
-        handleSetIsForm(false)
+        navigate('/');
+        setValue('');
       }}
       initialValues={{
         email: '',
@@ -89,9 +94,9 @@ export const LoginForm: React.FC<Props> = ({ handleSetSignUp, handleSetToken, ha
             Submit form
           </Button>
 
-          <Button variant="link" onClick={() => handleSetSignUp(false)} className="form__link">
-            Don&apos;t have an account yet?
-          </Button>
+          <Link to="/sign-up" className="form__link">
+            <Button variant="link">Don&apos;t have an account yet?</Button>
+          </Link>
         </Form>
       )}
     </Formik>
