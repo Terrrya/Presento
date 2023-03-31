@@ -5,13 +5,13 @@ import './styles/index.scss';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 import { App } from './App';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { ErrorPage } from './components/ErrorPage';
 import { SignUpForm } from './components/SignUpForm';
 import { LoginForm } from './components/LoginForm';
 import { MainPage } from './components/MainPage';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     element: <App />,
