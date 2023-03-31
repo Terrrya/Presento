@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/presento/static/css/main.7d9b959d.css",
-    "main.js": "/presento/static/js/main.809d3b5e.js",
-    "static/media/fa-solid-900.ttf": "/presento/static/media/fa-solid-900.2877d54f94f30c5d563c.ttf",
-    "static/media/fa-brands-400.ttf": "/presento/static/media/fa-brands-400.13e40630e5866f777de8.ttf",
-    "static/media/fa-solid-900.woff2": "/presento/static/media/fa-solid-900.bdb9e23299f9d1320a8b.woff2",
-    "static/media/fa-brands-400.woff2": "/presento/static/media/fa-brands-400.7be2266f1be21c44ecd4.woff2",
-    "static/media/fa-regular-400.ttf": "/presento/static/media/fa-regular-400.146404900f7550a9719d.ttf",
-    "static/media/fa-regular-400.woff2": "/presento/static/media/fa-regular-400.8bedd7cfa43a6c358cdd.woff2",
-    "static/media/icon1.png": "/presento/static/media/icon1.ea6d8936d632a074ed96.png",
-    "static/media/logo.png": "/presento/static/media/logo.f147044748c1a86b92c6.png",
-    "static/media/fa-v4compatibility.ttf": "/presento/static/media/fa-v4compatibility.6c0a7b774ffa1cf0a059.ttf",
-    "static/media/fa-v4compatibility.woff2": "/presento/static/media/fa-v4compatibility.497d535001197a9c5b38.woff2",
-    "index.html": "/presento/index.html",
-    "main.7d9b959d.css.map": "/presento/static/css/main.7d9b959d.css.map",
-    "main.809d3b5e.js.map": "/presento/static/js/main.809d3b5e.js.map"
+    "main.css": "/Presento/static/css/main.5184cfe8.css",
+    "main.js": "/Presento/static/js/main.a7ff043b.js",
+    "static/media/fa-solid-900.ttf": "/Presento/static/media/fa-solid-900.2877d54f94f30c5d563c.ttf",
+    "static/media/fa-brands-400.ttf": "/Presento/static/media/fa-brands-400.13e40630e5866f777de8.ttf",
+    "static/media/fa-solid-900.woff2": "/Presento/static/media/fa-solid-900.bdb9e23299f9d1320a8b.woff2",
+    "static/media/fa-brands-400.woff2": "/Presento/static/media/fa-brands-400.7be2266f1be21c44ecd4.woff2",
+    "static/media/fa-regular-400.ttf": "/Presento/static/media/fa-regular-400.146404900f7550a9719d.ttf",
+    "static/media/fa-regular-400.woff2": "/Presento/static/media/fa-regular-400.8bedd7cfa43a6c358cdd.woff2",
+    "static/media/icon1.png": "/Presento/static/media/icon1.ea6d8936d632a074ed96.png",
+    "static/media/logo.png": "/Presento/static/media/logo.f147044748c1a86b92c6.png",
+    "static/media/fa-v4compatibility.ttf": "/Presento/static/media/fa-v4compatibility.6c0a7b774ffa1cf0a059.ttf",
+    "static/media/fa-v4compatibility.woff2": "/Presento/static/media/fa-v4compatibility.497d535001197a9c5b38.woff2",
+    "index.html": "/Presento/index.html",
+    "main.5184cfe8.css.map": "/Presento/static/css/main.5184cfe8.css.map",
+    "main.a7ff043b.js.map": "/Presento/static/js/main.a7ff043b.js.map"
   },
   "entrypoints": [
-    "static/css/main.7d9b959d.css",
-    "static/js/main.809d3b5e.js"
+    "static/css/main.5184cfe8.css",
+    "static/js/main.a7ff043b.js"
   ]
 }
