@@ -169,6 +169,7 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "Help to get right present for any occasion",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
+    "ENABLE_DJANGO_DEPLOY_CHECK": True,
     "SWAGGER_UI_SETTINGS": {
         "deepLinking": True,
         "defaultModelRendering": "model",
