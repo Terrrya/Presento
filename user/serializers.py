@@ -7,6 +7,9 @@ from rest_framework.authentication import authenticate
 class UserSerializer(serializers.ModelSerializer):
     """User (customer) model."""
 
+    first_name = serializers.CharField(required=True)
+    last_name = serializers.CharField(required=True)
+
     class Meta:
         model = get_user_model()
         fields = (
