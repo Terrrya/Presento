@@ -21,4 +21,4 @@ class Gift(models.Model):
     description = models.TextField()
     for_gender = models.CharField(max_length=10, choices=GenderChoices.choices)
     image = models.ImageField(width_field=100, height_field=100)
-    for_age = models.CharField(max_length=10, choices=AgeChoices)
+    for_age = models.CharField(max_length=10, choices=AgeChoices.choices)
