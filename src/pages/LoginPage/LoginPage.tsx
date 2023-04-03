@@ -17,13 +17,9 @@ const schema = yup.object().shape({
   password: yup.string().required('Password is required')
 });
 
-type Props = {
-  handleSetToken: (token: Token) => void;
-};
-
-export const LoginForm: React.FC<Props> = ({ handleSetToken }) => {
+export const LoginPage: React.FC = () => {
   const { setToken } = useToken();
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState({});
   const navigate = useNavigate();
 
   const createToken = (loginData: Login) => {
@@ -51,7 +47,7 @@ export const LoginForm: React.FC<Props> = ({ handleSetToken }) => {
         });
 
         navigate('/');
-        setValue('');
+        setValue({});
       }}
       initialValues={{
         email: '',

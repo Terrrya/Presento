@@ -16,11 +16,12 @@ function request<T>(url: string, method: RequestMethod = 'GET', data: any = null
     };
   }
 
-  if (url !== '/api/user/register/' && url !== '/api/user/login/') {
+  if (url !== '/api/user/register/' && url !== '/api/user/token/') {
     console.log(111);
+    console.log(userToken);
 
     options.headers = {
-      Authorization: `Token ${userToken?.token}`
+      Authorization: `Bearer ${userToken?.access}`
     };
   }
 

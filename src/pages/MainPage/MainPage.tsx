@@ -33,14 +33,14 @@ export const MainPage: React.FC = () => {
         <Button variant="primary">Choose gifts</Button>
       </Link>
 
-      {!!token && (
+      {token ? (
         <>
           <h3>You are logged in</h3>
           <Button variant="secondary" onClick={() => getUserInfo()}>
             Get user info
           </Button>
         </>
-      )}
+      ) : (<h3>You are not logged in</h3>)}
     </div>
   );
 };

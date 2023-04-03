@@ -6,10 +6,10 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 import { App } from './App';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
-import { ErrorPage } from './components/ErrorPage';
-import { SignUpForm } from './components/SignUpForm';
-import { LoginForm } from './components/LoginForm';
-import { MainPage } from './components/MainPage';
+import { ErrorPage } from './pages/ErrorPage';
+import { SignUpPage } from './pages/SignUpPage';
+import { LoginPage } from './pages/LoginPage';
+import { MainPage } from './pages/MainPage';
 
 const router = createHashRouter([
   {
@@ -19,17 +19,17 @@ const router = createHashRouter([
     children: [
       {
         index: true,
-        element: <MainPage />,
+        element: <MainPage />
       },
 
       {
         path: 'sign-up',
-        element: <SignUpForm />,
+        element: <SignUpPage />
       },
 
       {
         path: 'login',
-        element: <LoginForm handleSetToken={() => null} />
+        element: <LoginPage />
       }
     ]
   }

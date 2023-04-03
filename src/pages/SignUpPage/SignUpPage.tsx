@@ -8,8 +8,8 @@ import { User } from '../../types/User';
 import { Link } from 'react-router-dom';
 
 const schema = yup.object().shape({
-  firstName: yup.string().required('First name is required'),
-  lastName: yup.string().required('Last name is required'),
+  firstName: yup.string().required('First name is required').max(75, 'Max length - 75 symbols'),
+  lastName: yup.string().required('Last name is required').max(75, 'Max length - 75 symbols'),
   email: yup
     .string()
     .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, 'Please enter email in right format')
@@ -20,7 +20,7 @@ const schema = yup.object().shape({
     .matches(/\d/g, 'Your password must contain at least one number')
     .required('Password is required')
     .notOneOf(
-      [yup.ref('firstName'), yup.ref('lastName'), yup.ref('lastName')],
+      [yup.ref('firstName'), yup.ref('lastName'), yup.ref('email')],
       "Your password can't be too similar to your other personal information"
     ),
   repeatPassword: yup
@@ -29,15 +29,10 @@ const schema = yup.object().shape({
     .oneOf([yup.ref('password')], 'Please enter the same password as above.')
 });
 
-// type Props = {
-//   handleSetSignUp: (isSignIn: boolean) => void;
-// };
-
-export const SignUpForm: React.FC = () => {
+export const SignUpPage: React.FC = () => {
   const createUser = (user: User) => {
     const createNewUser = async () => {
       try {
-        // await createUserOnServer(user);
         const createdUser = await createUserOnServer(user);
         console.log(createdUser);
       } catch (error) {
