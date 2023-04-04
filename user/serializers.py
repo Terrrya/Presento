@@ -43,6 +43,17 @@ class UserSerializer(serializers.ModelSerializer):
 
         return user
 
+    # def partial_update(self, instance, validated_data):
+    #     """Update a user, set the password correctly and return it"""
+    #     password = validated_data.pop("password", None)
+    #     user = super().update(instance, validated_data)
+    #
+    #     if password:
+    #         user.set_password(password)
+    #         user.save()
+    #
+    #     return user
+
     def validate(self, data):
         """
         Validate data with validating password using AUTH_PASSWORD_VALIDATORS
@@ -50,13 +61,14 @@ class UserSerializer(serializers.ModelSerializer):
         user = get_user_model()(**data)
         password = data.get("password")
 
-        errors = dict()
-        try:
-            validate_password(password=password, user=user)
-        except ValidationError as e:
-            errors["password"] = list(e.messages)
-        if errors:
-            raise serializers.ValidationError(errors)
+        if password:
+            errors = dict()
+            try:
+                validate_password(password=password, user=user)
+            except ValidationError as e:
+                errors["password"] = list(e.messages)
+            if errors:
+                raise serializers.ValidationError(errors)
 
         return super(UserSerializer, self).validate(data)
 
