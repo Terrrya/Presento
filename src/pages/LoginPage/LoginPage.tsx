@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { loginUserOnServer } from '../../api/user';
 import { Login } from '../../types/Login';
-import { Token } from '../../types/Token';
+// import { Token } from '../../types/Token';
 import { Link, useNavigate } from 'react-router-dom';
 import useToken from '../../utils/useToken';
 
@@ -19,7 +19,7 @@ const schema = yup.object().shape({
 
 export const LoginPage: React.FC = () => {
   const { setToken } = useToken();
-  const [value, setValue] = useState({});
+
   const navigate = useNavigate();
 
   const createToken = (loginData: Login) => {
@@ -28,6 +28,8 @@ export const LoginPage: React.FC = () => {
         const token = await loginUserOnServer(loginData);
         console.log(token);
         setToken(token);
+        navigate('/');
+        window.location.reload();
       } catch (error) {
         console.log('loginError');
         console.log(error);
@@ -45,9 +47,6 @@ export const LoginPage: React.FC = () => {
           email,
           password
         });
-
-        navigate('/');
-        setValue({});
       }}
       initialValues={{
         email: '',
@@ -66,6 +65,7 @@ export const LoginPage: React.FC = () => {
               name="email"
               value={values.email}
               onChange={handleChange}
+              autoComplete="email"
               isValid={touched.email && !errors.email}
               isInvalid={touched.email && !!errors.email}
             />
@@ -80,6 +80,7 @@ export const LoginPage: React.FC = () => {
               name="password"
               value={values.password}
               onChange={handleChange}
+              autoComplete="current-password"
               isValid={touched.password && !errors.password}
               isInvalid={touched.password && !!errors.password}
             />

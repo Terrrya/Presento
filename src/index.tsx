@@ -10,6 +10,8 @@ import { ErrorPage } from './pages/ErrorPage';
 import { SignUpPage } from './pages/SignUpPage';
 import { LoginPage } from './pages/LoginPage';
 import { MainPage } from './pages/MainPage';
+import { ProfilePage } from './pages/ProfilePage';
+import { FilterPage } from './pages/FilterPage';
 
 const router = createHashRouter([
   {
@@ -30,6 +32,16 @@ const router = createHashRouter([
       {
         path: 'login',
         element: <LoginPage />
+      },
+
+      {
+        path: 'profile',
+        element: <ProfilePage />
+      },
+
+      {
+        path: 'filter',
+        element: <FilterPage />
       }
     ]
   }

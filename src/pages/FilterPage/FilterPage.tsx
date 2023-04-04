@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-import { capitalize } from '../../helpers/capitalize';
+// import { capitalize } from '../../helpers/capitalize';
 
 const agesInitial = [
   { label: 'Under 16 y.o.', id: 'ageLessThan16' },
@@ -29,11 +29,20 @@ export const FilterPage: React.FC = () => {
     }
   }, []);
 
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
+  const [age, setAge] = useState('ageLessThan16');
+  const [gender, setGender] = useState('male');
   const [occasion, setOccasion] = useState('');
-  const [budget, setBudget] = useState('');
+  const [budgets, setBudgets] = useState<string[]>([]);
   const [likes, setLikes] = useState<string[]>([]);
+
+  const handleSetBudgets = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setBudgets([...budgets, value]);
+    } else {
+      setBudgets(budgets.filter((budget) => budget !== value));
+    }
+  }
 
   const handleSetLikes = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
@@ -47,7 +56,7 @@ export const FilterPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(age, gender, occasion, budget, likes);
+    console.log({age, gender, occasion, budgets, likes});
   }
 
   return (
@@ -66,6 +75,7 @@ export const FilterPage: React.FC = () => {
                 name="age"
                 id={id}
                 value={id}
+                checked={age === id}
                 onChange={(e) => setAge(e.target.value)}
               />
             ))}
@@ -85,6 +95,7 @@ export const FilterPage: React.FC = () => {
               name="gender"
               id="male"
               value="male"
+              checked={gender === 'male'}
               onChange={(e) => setGender(e.target.value)}
             />
             <Form.Check
@@ -93,6 +104,7 @@ export const FilterPage: React.FC = () => {
               name="gender"
               id="female"
               value="female"
+              checked={gender === 'female'}
               onChange={(e) => setGender(e.target.value)}
             />
           </Col>
@@ -126,12 +138,13 @@ export const FilterPage: React.FC = () => {
             {budgetsInitial.map(({ label, id }) => (
               <Form.Check
                 key={id}
-                type="radio"
+                type="checkbox"
                 label={label}
                 name="budget"
                 id={id}
                 value={id}
-                onChange={(e) => setBudget(e.target.value)}
+
+                onChange={handleSetBudgets}
               />
             ))}
           </Col>

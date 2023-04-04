@@ -1,6 +1,5 @@
-export interface User {
-  email: string;
-  first_name: string;
-  last_name: string;
+import { Response } from './Response'
+
+export interface User extends Omit<Response, 'id' | 'is_staff'> {
   password: string;
 }

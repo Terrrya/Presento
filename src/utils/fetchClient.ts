@@ -12,16 +12,17 @@ function request<T>(url: string, method: RequestMethod = 'GET', data: any = null
   if (data) {
     options.body = JSON.stringify(data);
     options.headers = {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      // Authorization: `Token ${userToken}`,
     };
   }
 
   if (url !== '/api/user/register/' && url !== '/api/user/token/') {
-    console.log(111);
     console.log(userToken);
 
     options.headers = {
-      Authorization: `Bearer ${userToken?.access}`
+      ...options.headers,
+      Authorization: `Token ${userToken}`,
     };
   }
 

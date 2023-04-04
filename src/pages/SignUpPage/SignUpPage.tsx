@@ -2,54 +2,31 @@ import React from 'react';
 import { createUserOnServer } from '../../api/user';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import * as yup from 'yup';
 import { Formik } from 'formik';
 import { User } from '../../types/User';
-import { Link } from 'react-router-dom';
-
-const schema = yup.object().shape({
-  firstName: yup.string().required('First name is required').max(75, 'Max length - 75 symbols'),
-  lastName: yup.string().required('Last name is required').max(75, 'Max length - 75 symbols'),
-  email: yup
-    .string()
-    .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, 'Please enter email in right format')
-    .required('Email is required'),
-  password: yup
-    .string()
-    .min(8, 'Your password must be at least 8 characters long')
-    .matches(/\d/g, 'Your password must contain at least one number')
-    .required('Password is required')
-    .notOneOf(
-      [yup.ref('firstName'), yup.ref('lastName'), yup.ref('email')],
-      "Your password can't be too similar to your other personal information"
-    ),
-  repeatPassword: yup
-    .string()
-    .required('Confirm Password is required')
-    .oneOf([yup.ref('password')], 'Please enter the same password as above.')
-});
+import { Link, useNavigate } from 'react-router-dom';
+import { validationSchema } from '../../utils/validationSchemes';
 
 export const SignUpPage: React.FC = () => {
-  const createUser = (user: User) => {
-    const createNewUser = async () => {
-      try {
-        const createdUser = await createUserOnServer(user);
-        console.log(createdUser);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const navigate = useNavigate();
 
-    createNewUser();
+  const createUser = async (user: User) => {
+    try {
+      const createdUser = await createUserOnServer(user);
+      console.log(createdUser);
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Formik
-      validationSchema={schema}
+      validationSchema={validationSchema}
       onSubmit={({ email, firstName, lastName, password }) => {
         createUser({
-          email,
-          first_name: firstName,
-          last_name: lastName,
+          email: email.trim(),
+          first_name: firstName.trim(),
+          last_name: lastName.trim(),
           password
         });
       }}
