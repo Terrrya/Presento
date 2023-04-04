@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from gift.models import Gift
+
+admin.site.register(Gift)
