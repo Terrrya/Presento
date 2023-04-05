@@ -7,7 +7,7 @@ from django.db import models
 from django.utils.text import slugify
 
 
-def movie_image_file_path(instance: Gift, filename: str) -> str:
+def gift_image_file_path(instance: Gift, filename: str) -> str:
     _, extension = os.path.splitext(filename)
     filename = f"{slugify(instance.title)}-{uuid.uuid4()}{extension}"
 
@@ -49,7 +49,7 @@ class Gift(models.Model):
         max_length=10, choices=GenderChoices.choices, blank=True
     )
     image = models.ImageField(
-        null=True, upload_to=movie_image_file_path, blank=True
+        null=True, upload_to=gift_image_file_path, blank=True
     )
     age = models.CharField(
         max_length=10, choices=AgeChoices.choices, blank=True
