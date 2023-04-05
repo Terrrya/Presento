@@ -40,7 +40,11 @@ class Migration(migrations.Migration):
             name="gender",
             field=models.CharField(
                 blank=True,
-                choices=[("Male", "Male"), ("Female", "Female"), ("Both", "Both")],
+                choices=[
+                    ("Male", "Male"),
+                    ("Female", "Female"),
+                    ("Both", "Both"),
+                ],
                 max_length=10,
             ),
         ),
@@ -77,7 +81,9 @@ class Migration(migrations.Migration):
             model_name="gift",
             name="image",
             field=models.ImageField(
-                blank=True, null=True, upload_to=gift.models.movie_image_file_path
+                blank=True,
+                null=True,
+                upload_to=gift.models.gift_image_file_path,
             ),
         ),
     ]
