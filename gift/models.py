@@ -1,4 +1,17 @@
+from __future__ import annotations
+
+import os
+import uuid
+
 from django.db import models
+from django.utils.text import slugify
+
+
+def movie_image_file_path(instance: Gift, filename: str) -> str:
+    _, extension = os.path.splitext(filename)
+    filename = f"{slugify(instance.title)}-{uuid.uuid4()}{extension}"
+
+    return os.path.join("uploads/gifts/", filename)
 
 
 class Gift(models.Model):
@@ -16,9 +29,34 @@ class Gift(models.Model):
         BETWEEN_56_65 = "56-65"
         OVER_65 = "Over 65"
 
+    class OccasionChoices(models.Choices):
+        BIRTHDAY = "Birthday"
+        WEDDING = "Wedding"
+        NEW_YEAR = "New year"
+
+    class LikesChoices(models.Choices):
+        COMPUTER = "Computer"
+        DANCE = "Dance"
+        FOOTBALL = "Football"
+        BASKETBALL = "Basketball"
+        GADGET = "Gadget"
+        CLOTHES = "Clothes"
+
     title = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=9, decimal_places=2)
     description = models.TextField()
-    for_gender = models.CharField(max_length=10, choices=GenderChoices.choices)
-    image = models.ImageField(width_field=100, height_field=100)
-    for_age = models.CharField(max_length=10, choices=AgeChoices.choices)
+    gender = models.CharField(
+        max_length=10, choices=GenderChoices.choices, blank=True
+    )
+    image = models.ImageField(
+        null=True, upload_to=movie_image_file_path, blank=True
+    )
+    age = models.CharField(
+        max_length=10, choices=AgeChoices.choices, blank=True
+    )
+    occasion = models.CharField(
+        max_length=15, choices=OccasionChoices.choices, blank=True
+    )
+    likes = models.CharField(
+        max_length=15, choices=LikesChoices.choices, blank=True
+    )
