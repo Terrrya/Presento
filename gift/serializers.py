@@ -8,4 +8,4 @@ class GiftSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Gift
-        fields = ("id", "title", "price", "description")
+        fields = ("id", "title", "price", "description", "image")
