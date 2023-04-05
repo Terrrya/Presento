@@ -37,8 +37,7 @@ class Gift(models.Model):
     class LikesChoices(models.Choices):
         COMPUTER = "Computer"
         DANCE = "Dance"
-        FOOTBALL = "Football"
-        BASKETBALL = "Basketball"
+        SPORT = "Sport"
         GADGET = "Gadget"
         CLOTHES = "Clothes"
 
