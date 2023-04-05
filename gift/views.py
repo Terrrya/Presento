@@ -64,33 +64,33 @@ class GiftViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
                 "budgets",
                 type={"type": "list", "items": {"type": "string"}},
                 description=(
-                    "Filter by price limits (ex. ?budget=0-100,500-1000)"
+                    "Filter by price limits (ex. ?budget=0-100,500-1000)."
                 ),
             ),
             OpenApiParameter(
                 "gender",
                 type=OpenApiTypes.STR,
                 description="Filter by gender (ex. ?gender=Male). "
-                "Can be: Male, Female, Both",
+                "Can be: Male, Female, Both.",
             ),
             OpenApiParameter(
                 "age",
                 type=OpenApiTypes.STR,
                 description="Filter by age (ex. ?age=26-35). "
-                "Can be: 0-18, 19-25, 26-35, 36-45, 46-55, 56-65, "
-                "65-100",
+                "Can be: 0-16, 17-25, 26-45, 46-100.",
             ),
             OpenApiParameter(
                 "occasion",
                 type=OpenApiTypes.STR,
                 description="Filter by occasion (ex. ?occasion=Birthday). "
-                "Can be: Birthday, Wedding, New Year",
+                "Can be: Birthday, Wedding, New Year, Valentines Day, "
+                "Graduation.",
             ),
             OpenApiParameter(
                 "likes",
                 type={"type": "list", "items": {"type": "string"}},
                 description="Filter by likes (ex. ?likes=Gadget,Sport). "
-                "Can be: Computer, Sport, Dance, Gadget, Clothes",
+                "Can be: Beauty, Sport, Cars, IT, Fashion, Music",
             ),
         ]
     )

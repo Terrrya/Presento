@@ -21,25 +21,25 @@ class Gift(models.Model):
         BOTH = "Both"
 
     class AgeChoices(models.Choices):
-        UNDER_18 = "0-18"
-        BETWEEN_18_25 = "19-25"
-        BETWEEN_26_35 = "26-35"
-        BETWEEN_36_45 = "36-45"
-        BETWEEN_46_55 = "46-55"
-        BETWEEN_56_65 = "56-65"
-        OVER_65 = "65-100"
+        UNDER_18 = "0-16"
+        BETWEEN_18_25 = "17-25"
+        BETWEEN_26_35 = "26-45"
+        OVER_45 = "46-100"
 
     class OccasionChoices(models.Choices):
         BIRTHDAY = "Birthday"
         WEDDING = "Wedding"
-        NEW_YEAR = "New year"
+        NEW_YEAR = "New Year"
+        VALENTINES_DAY = "Valentines Day"
+        GRADUATION = "Graduation"
 
     class LikesChoices(models.Choices):
-        COMPUTER = "Computer"
-        DANCE = "Dance"
+        IT = "IT"
+        BEAUTY = "Beauty"
         SPORT = "Sport"
-        GADGET = "Gadget"
-        CLOTHES = "Clothes"
+        CARS = "Cars"
+        FASHION = "Fashion"
+        MUSIC = "Music"
 
     title = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=9, decimal_places=2)
