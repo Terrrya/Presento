@@ -1,6 +1,9 @@
 from django.db.models import Q
 from django.shortcuts import render
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import generics, viewsets, mixins
+from rest_framework.permissions import IsAuthenticated
 
 from gift.models import Gift
 from gift.serializers import GiftSerializer
@@ -10,6 +13,7 @@ from decimal import Decimal
 class GiftViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = GiftSerializer
     queryset = Gift.objects.all()
+    permission_classes = (IsAuthenticated,)
 
     @staticmethod
     def _params_to_limits(qs):
@@ -25,12 +29,12 @@ class GiftViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         age = self.request.query_params.get("age")
         occasion = self.request.query_params.get("occasion")
         likes = self.request.query_params.get("likes")
-        budget = self.request.query_params.get("budget")
+        budgets = self.request.query_params.get("budgets")
 
         queryset = self.queryset
 
-        if budget:
-            budgets = self._params_to_limits(budget)
+        if budgets:
+            budgets = self._params_to_limits(budgets)
             query = ""
             for budget in budgets:
                 if query == "":
@@ -53,3 +57,42 @@ class GiftViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             queryset = queryset.filter(likes__in=likes)
 
         return queryset.all()
+
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                "budgets",
+                type={"type": "list", "items": {"type": "string"}},
+                description=(
+                    "Filter by price limits (ex. ?budget=0-100,500-1000)"
+                ),
+            ),
+            OpenApiParameter(
+                "gender",
+                type=OpenApiTypes.STR,
+                description="Filter by gender (ex. ?gender=Male). "
+                "Can be: Male, Female, Both",
+            ),
+            OpenApiParameter(
+                "age",
+                type=OpenApiTypes.STR,
+                description="Filter by age (ex. ?age=26-35). "
+                "Can be: 0-18, 19-25, 26-35, 36-45, 46-55, 56-65, "
+                "65-100",
+            ),
+            OpenApiParameter(
+                "occasion",
+                type=OpenApiTypes.STR,
+                description="Filter by occasion (ex. ?occasion=Birthday). "
+                "Can be: Birthday, Wedding, New Year",
+            ),
+            OpenApiParameter(
+                "likes",
+                type={"type": "list", "items": {"type": "string"}},
+                description="Filter by likes (ex. ?likes=Gadget,Sport). "
+                "Can be: Computer, Sport, Dance, Gadget, Clothes",
+            ),
+        ]
+    )
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
