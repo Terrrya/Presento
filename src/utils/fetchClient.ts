@@ -28,7 +28,7 @@ function request<T>(url: string, method: RequestMethod = 'GET', data: any = null
 
   return fetch(BASE_URL + url, options).then((response) => {
     if (!response.ok) {
-      throw new Error();
+      return Promise.reject(response.json())
     }
 
     return response.json();

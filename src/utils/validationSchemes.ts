@@ -12,7 +12,6 @@ export const validationSchema = yup.object().shape({
     .string()
     .min(8, 'Your password must be at least 8 characters long')
     .max(128, 'Max length - 128 symbols')
-    .matches(/\d/g, 'Your password must contain at least one number')
     .matches(/[a-zA-Z]/g, 'Your password must contain at least one letter')
     .required('Password is required')
     .notOneOf(

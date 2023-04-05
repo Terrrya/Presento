@@ -21,7 +21,9 @@ export const Header: React.FC = () => {
   };
 
   useEffect(() => {
-    getUserData();
+    if (token) {
+      getUserData();
+    }
   }, []);
 
   return (

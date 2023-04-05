@@ -9,7 +9,8 @@ export const Footer: React.FC = () => {
       <div className="footer__left-container"></div>
 
       <div className="footer__img-continer">
-        <img className="footer__img" src={icon1} alt="Presento" width="100px" />
+        Presento
+        <br/>
         Copyright © 2023.
       </div>
 

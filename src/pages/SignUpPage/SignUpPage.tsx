@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createUserOnServer } from '../../api/user';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -8,15 +8,37 @@ import { Link, useNavigate } from 'react-router-dom';
 import { validationSchema } from '../../utils/validationSchemes';
 
 export const SignUpPage: React.FC = () => {
+  const [errorEmail, setErrorEmail] = useState('');
+  const [errorPassword, setErrorPassword] = useState('');
+  // const [didFocusFirstName, setDidFocusFirstName] = React.useState(false);
+  // const [didFocusLastName, setDidFocusLastName] = React.useState(false);
+  // const [didFocusEmail, setDidFocusEmail] = React.useState(false);
+  // const [didFocusPassword, setDidFocusPassword] = React.useState(false);
+  // const [didFocusRepeatPassword, setDidFocusRepeatPassword] = React.useState(false);
+
   const navigate = useNavigate();
 
   const createUser = async (user: User) => {
     try {
       const createdUser = await createUserOnServer(user);
+      console.log('createdUser');
       console.log(createdUser);
+      
       navigate('/login');
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      const errorObject = await error;
+      switch (Object.keys(errorObject)[0]) {
+        case 'email':
+          setErrorEmail(Object.values<string>(errorObject)[0])
+          break;
+        case 'password':
+          setErrorPassword(Object.values<string>(errorObject)[0])
+          break;
+        default:
+          break;
+      }
+      
+      // console.log(errorObject);
     }
   };
   return (
@@ -52,6 +74,9 @@ export const SignUpPage: React.FC = () => {
               onChange={handleChange}
               isValid={touched.firstName && !errors.firstName}
               isInvalid={touched.firstName && !!errors.firstName}
+              // onFocus={() => setDidFocusFirstName(true)}
+              // isValid={(didFocusFirstName && values.firstName.trim()) ? !errors.firstName : false}
+              // isInvalid={(didFocusFirstName && !touched.firstName) ? !!errors.firstName : false}
             />
             <Form.Control.Feedback type="invalid">{errors.firstName}</Form.Control.Feedback>
           </Form.Group>
@@ -66,6 +91,9 @@ export const SignUpPage: React.FC = () => {
               onChange={handleChange}
               isValid={touched.lastName && !errors.lastName}
               isInvalid={touched.lastName && !!errors.lastName}
+              // onFocus={() => setDidFocusLastName(true)}
+              // isValid={(didFocusLastName && values.lastName.trim()) ? !errors.lastName : false}
+              // isInvalid={(didFocusLastName && !touched.lastName) ? !!errors.lastName : false}
             />
             <Form.Control.Feedback type="invalid">{errors.lastName}</Form.Control.Feedback>
           </Form.Group>
@@ -77,11 +105,15 @@ export const SignUpPage: React.FC = () => {
               placeholder="Enter email"
               name="email"
               value={values.email}
-              onChange={handleChange}
-              isValid={touched.email && !errors.email}
-              isInvalid={touched.email && !!errors.email}
+              onChange={(e) => {handleChange(e); setErrorEmail('')}}
+              isValid={touched.email && !errors.email && !errorEmail}
+              isInvalid={touched.email && !!errors.email || !!errorEmail}
+              // onFocus={() => setDidFocusEmail(true)}
+              // isValid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !errors.email : false}
+              // isInvalid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !!errors.email : false}
             />
-            <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{errors.email || errorEmail}</Form.Control.Feedback>
+            {/* <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback> */}
           </Form.Group>
 
           <Form.Group className="mb-2" controlId="formBasicPassword">
@@ -92,11 +124,14 @@ export const SignUpPage: React.FC = () => {
               name="password"
               autoComplete="off"
               value={values.password}
-              onChange={handleChange}
-              isValid={touched.password && !errors.password}
-              isInvalid={touched.password && !!errors.password}
+              onChange={(e) => {handleChange(e); setErrorPassword('')}}
+              isValid={touched.password && !errors.password && !errorPassword}
+              isInvalid={touched.password && !!errors.password || !!errorPassword}
+              // onFocus={() => setDidFocusPassword(true)}
+              // isValid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !errors.password : false}
+              // isInvalid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !!errors.password : false}
             />
-            <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{errors.password || errorPassword}</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group className="mb-2" controlId="formBasicRepeatPassword">
@@ -110,6 +145,9 @@ export const SignUpPage: React.FC = () => {
               onChange={handleChange}
               isValid={touched.repeatPassword && !errors.repeatPassword}
               isInvalid={touched.repeatPassword && !!errors.repeatPassword}
+              // onFocus={() => setDidFocusRepeatPassword(true)}
+              // isValid={(!!didFocusRepeatPassword && values.repeatPassword.trim().length > 2 ) ? !errors.repeatPassword : false}
+              // isInvalid={(!!didFocusRepeatPassword && values.repeatPassword.trim().length > 2 ) ? !!errors.repeatPassword : false}
             />
             <Form.Control.Feedback type="invalid">{errors.repeatPassword}</Form.Control.Feedback>
           </Form.Group>

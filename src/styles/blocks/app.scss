@@ -11,14 +11,14 @@
   }
 
   &__content {
-    height: calc(100vh - 80px - 75px);
+    min-height: calc(100vh - 80px - 76px);
     // background-image: url(../images/background.jpg);
     // background-size: cover;
     // background-repeat: no-repeat;
   }
 
   &__footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     right: 0;
     left: 0;

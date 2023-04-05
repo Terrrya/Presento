@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import * as yup from 'yup';
@@ -19,6 +19,7 @@ const schema = yup.object().shape({
 
 export const LoginPage: React.FC = () => {
   const { setToken } = useToken();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
 
@@ -30,9 +31,10 @@ export const LoginPage: React.FC = () => {
         setToken(token);
         navigate('/');
         window.location.reload();
-      } catch (error) {
-        console.log('loginError');
-        console.log(error);
+      } catch (error: any) {
+        const x = await error;
+        setErrorMessage(Object.values<string>(x)[0])
+        // console.log(x);
       }
     };
 
@@ -64,10 +66,10 @@ export const LoginPage: React.FC = () => {
               placeholder="Enter email"
               name="email"
               value={values.email}
-              onChange={handleChange}
+              onChange={(e) => {handleChange(e); setErrorMessage('')}}
               autoComplete="email"
-              isValid={touched.email && !errors.email}
-              isInvalid={touched.email && !!errors.email}
+              // isValid={touched.email && !errors.email&& !errorMessage} 
+              isInvalid={touched.email && !!errors.email || !!errorMessage}
             />
             <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
           </Form.Group>
@@ -79,12 +81,12 @@ export const LoginPage: React.FC = () => {
               placeholder="Password"
               name="password"
               value={values.password}
-              onChange={handleChange}
+              onChange={(e) => {handleChange(e); setErrorMessage('')}}
               autoComplete="current-password"
-              isValid={touched.password && !errors.password}
-              isInvalid={touched.password && !!errors.password}
+              // isValid={touched.password && !errors.password && !errorMessage}
+              isInvalid={touched.password && !!errors.password || !!errorMessage}
             />
-            <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{errors.password || errorMessage}</Form.Control.Feedback>
           </Form.Group>
 
           <Button className="form__submit" type="submit">
