@@ -21,13 +21,13 @@ class Gift(models.Model):
         BOTH = "Both"
 
     class AgeChoices(models.Choices):
-        UNDER_18 = "Under 18"
-        BETWEEN_18_25 = "18-25"
+        UNDER_18 = "0-18"
+        BETWEEN_18_25 = "19-25"
         BETWEEN_26_35 = "26-35"
         BETWEEN_36_45 = "36-45"
         BETWEEN_46_55 = "46-55"
         BETWEEN_56_65 = "56-65"
-        OVER_65 = "Over 65"
+        OVER_65 = "65-100"
 
     class OccasionChoices(models.Choices):
         BIRTHDAY = "Birthday"
