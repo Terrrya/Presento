@@ -59,3 +59,16 @@
     margin-right: 10px;
   }
 }
+
+.gifts__container {
+  padding: 40px 0;
+  display: flex;
+  align-items: center;
+  // justify-content: center;
+  overflow: hidden;
+}
+
+.gifts__big-container {
+  padding: 40px;
+
+}

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import { useGifts } from '../../App';
 import { getGiftsFromServer } from '../../api/gifts';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { agesInitial, gendersInitial, occasionsInitial, budgetsInitial, likesInitial } from '../../initial_data/filterParams';
 
 export const FilterPage: React.FC = () => {
@@ -26,11 +26,13 @@ export const FilterPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { setGifts } = useGifts();
 
+  const navigate = useNavigate();
 
   const getGifts = async (filterParams: URLSearchParams) => {
     try {
       const gifts = await getGiftsFromServer('?' + filterParams);
       setGifts(gifts);
+      navigate('/gifts');
     } catch (error) {
       console.log(error);
     }
