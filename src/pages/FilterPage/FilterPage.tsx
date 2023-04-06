@@ -6,25 +6,11 @@ import { Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import { useGifts } from '../../App';
 import { getGiftsFromServer } from '../../api/gifts';
 import { useSearchParams } from 'react-router-dom';
-
-const agesInitial = [
-  { label: 'Under 16 y.o.', id: '0-16' },
-  { label: '17-25 y.o.', id: '17-25' },
-  { label: '26-45 y.o.', id: '26-45' },
-  { label: '46+ y.o.', id: '46-100' }
-];
-const budgetsInitial = [
-  { label: '$', id: '0-99' },
-  { label: '$$', id: '100-500' },
-  { label: '$$$', id: '500-5000' }
-];
-
-const gendersInitial = ['Male', 'Female', 'Both'];
-
-const likesInitial = ['Sport', 'Beauty', 'Cars', 'Fashion', 'IT', 'Music'];
+import { agesInitial, gendersInitial, occasionsInitial, budgetsInitial, likesInitial } from '../../initial_data/filterParams';
 
 export const FilterPage: React.FC = () => {
   const group = useRef<HTMLAnchorElement | null>(null);
+
   useEffect(() => {
     if (group.current) {
       group.current.classList.remove('btn-group');
@@ -44,8 +30,6 @@ export const FilterPage: React.FC = () => {
   const getGifts = async (filterParams: URLSearchParams) => {
     try {
       const gifts = await getGiftsFromServer('?' + filterParams);
-      console.log('gifts');
-      console.log(gifts);
       setGifts(gifts);
     } catch (error) {
       console.log(error);
@@ -145,12 +129,11 @@ export const FilterPage: React.FC = () => {
               value={occasion}
               onChange={(e) => setOccasion(e.target.value)}
             >
-              <option value=""></option>
-              <option value="Birthday">Birthday</option>
-              <option value="New Year">New Year</option>
-              <option value="Valentines Day">Valentine&apos;s Day</option>
-              <option value="Graduation">Graduation</option>
-              <option value="Wedding">Wedding</option>
+              {occasionsInitial.map(occasion => (
+                <option value={occasion} key={occasion}>
+                  {occasion}
+                </option>
+              ))}
             </Form.Select>
           </Col>
         </Form.Group>
