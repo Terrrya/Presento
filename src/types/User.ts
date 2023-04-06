@@ -1,5 +1,5 @@
-import { Response } from './Response';
+import { UserResponse } from './UserResponse';
 
-export interface User extends Omit<Response, 'id' | 'is_staff'> {
+export interface User extends Omit<UserResponse, 'id' | 'is_staff'> {
   password: string;
 }

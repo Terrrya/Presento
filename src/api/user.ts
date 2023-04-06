@@ -1,5 +1,5 @@
 import { Login } from '../types/Login';
-import { Response } from '../types/Response';
+import { UserResponse } from '../types/UserResponse';
 import { Token } from '../types/Token';
 import { User } from '../types/User';
 import { UserData } from '../types/UserData';
@@ -14,7 +14,7 @@ export const loginUserOnServer = (data: Login) => {
 };
 
 export const getUserDataFromServer = () => {
-  return client.get<Response>(`/api/user/me/`);
+  return client.get<UserResponse>(`/api/user/me/`);
 };
 
 export const updateDataOnServer = (data: UserData) => {
