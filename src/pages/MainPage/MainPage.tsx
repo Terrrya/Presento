@@ -36,7 +36,9 @@ export const MainPage: React.FC = () => {
             Get user info
           </Button>
         </>
-      ) : (<h3>You are not logged in</h3>)}
+      ) : (
+        <h3>You are not logged in</h3>
+      )}
     </div>
   );
 };

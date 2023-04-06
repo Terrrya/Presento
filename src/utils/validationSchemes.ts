@@ -24,4 +24,4 @@ export const validationSchema = yup.object().shape({
     .oneOf([yup.ref('password')], 'Please enter the same password as above.')
 });
 
-export const schemaWithoutPassword = validationSchema.omit(['password', 'repeatPassword'])
+export const schemaWithoutPassword = validationSchema.omit(['password', 'repeatPassword']);

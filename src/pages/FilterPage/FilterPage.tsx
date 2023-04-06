@@ -1,27 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
 // import { Link } from 'react-router-dom';
 import { Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-// import { capitalize } from '../../helpers/capitalize';
+import { useOutletContext } from 'react-router-dom';
+import { useGifts } from '../../App';
 
 const agesInitial = [
-  { label: 'Under 16 y.o.', id: 'ageLessThan16' },
-  { label: '16-25 y.o.', id: 'age16To25' },
-  { label: '26-45 y.o.', id: 'age26To45' },
-  { label: '46+ y.o.', id: 'ageMoreThan46' }
+  { label: 'Under 16 y.o.', id: '0-16' },
+  { label: '17-25 y.o.', id: '17-25' },
+  { label: '26-45 y.o.', id: '26-45' },
+  { label: '46+ y.o.', id: '46-100' }
 ];
 const budgetsInitial = [
-  { label: '$', id: 'budgetLow' },
-  { label: '$$', id: 'budgetMedium' },
-  { label: '$$$', id: 'budgetHigh' }
+  { label: '$', id: '0-99' },
+  { label: '$$', id: '100-500' },
+  { label: '$$$', id: '500-5000' }
 ];
 
-const likesInitial = ['sport', 'beauty', 'cars', 'fashion', 'it', 'music'];
+const gendersInitial = ['Male', 'Female', 'Both'];
+
+const likesInitial = ['Sport', 'Beauty', 'Cars', 'Fashion', 'IT', 'Music'];
 
 export const FilterPage: React.FC = () => {
   const group = useRef<HTMLAnchorElement | null>(null);
+  const { setGifts } = useGifts();
 
   useEffect(() => {
     if (group.current) {
@@ -29,35 +32,30 @@ export const FilterPage: React.FC = () => {
     }
   }, []);
 
-  const [age, setAge] = useState('ageLessThan16');
-  const [gender, setGender] = useState('male');
+  const [age, setAge] = useState('0-16');
+  const [gender, setGender] = useState('Male');
   const [occasion, setOccasion] = useState('');
   const [budgets, setBudgets] = useState<string[]>([]);
   const [likes, setLikes] = useState<string[]>([]);
 
-  const handleSetBudgets = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = e.target;
-    if (checked) {
-      setBudgets([...budgets, value]);
-    } else {
-      setBudgets(budgets.filter((budget) => budget !== value));
-    }
-  }
-
-  const handleSetLikes = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCheckbox = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    options: string[],
+    setOptions: (value: React.SetStateAction<string[]>) => void
+  ) => {
     const { value, checked } = e.target;
 
     if (checked) {
-      setLikes([...likes, value]);
+      setOptions([...options, value]);
     } else {
-      setLikes(likes.filter((like) => like !== value));
+      setOptions(options.filter((option) => option !== value));
     }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({age, gender, occasion, budgets, likes});
-  }
+    console.log({ age, gender, occasion, budgets, likes });
+  };
 
   return (
     <Form className="form" onSubmit={handleSubmit}>
@@ -89,24 +87,18 @@ export const FilterPage: React.FC = () => {
             Gender
           </Form.Label>
           <Col sm={10}>
-            <Form.Check
-              type="radio"
-              label="Male"
-              name="gender"
-              id="male"
-              value="male"
-              checked={gender === 'male'}
-              onChange={(e) => setGender(e.target.value)}
-            />
-            <Form.Check
-              type="radio"
-              label="Female"
-              name="gender"
-              id="female"
-              value="female"
-              checked={gender === 'female'}
-              onChange={(e) => setGender(e.target.value)}
-            />
+            {gendersInitial.map((gender) => (
+              <Form.Check
+                key={gender}
+                type="radio"
+                label={gender}
+                name="gender"
+                id={gender}
+                value={gender}
+                checked={gender === 'Male'}
+                onChange={(e) => setGender(e.target.value)}
+              />
+            ))}
           </Col>
         </Form.Group>
       </fieldset>
@@ -117,13 +109,17 @@ export const FilterPage: React.FC = () => {
             Occasion
           </Form.Label>
           <Col sm={5}>
-            <Form.Select aria-label="Occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)}>
+            <Form.Select
+              aria-label="Occasion"
+              value={occasion}
+              onChange={(e) => setOccasion(e.target.value)}
+            >
               <option value=""></option>
-              <option value="birthday">Birthday</option>
-              <option value="newYear">New Year</option>
-              <option value="valentine'sDay">Valentine&apos;s Day</option>
-              <option value="graduation">Graduation</option>
-              <option value="wedding">Wedding</option>
+              <option value="Birthday">Birthday</option>
+              <option value="New Year">New Year</option>
+              <option value="Valentines Day">Valentine&apos;s Day</option>
+              <option value="Graduation">Graduation</option>
+              <option value="Wedding">Wedding</option>
             </Form.Select>
           </Col>
         </Form.Group>
@@ -143,8 +139,7 @@ export const FilterPage: React.FC = () => {
                 name="budget"
                 id={id}
                 value={id}
-
-                onChange={handleSetBudgets}
+                onChange={(e) => handleChangeCheckbox(e, budgets, setBudgets)}
               />
             ))}
           </Col>
@@ -162,13 +157,13 @@ export const FilterPage: React.FC = () => {
                 <ToggleButton
                   key={like}
                   type="checkbox"
-                  id={`like-${like}`}
+                  id={like}
                   name={like}
                   value={like}
-                  onChange={handleSetLikes}
+                  onChange={(e) => handleChangeCheckbox(e, likes, setLikes)}
                   className="like-item"
                 >
-                  {like.toUpperCase()}
+                  {like}
                 </ToggleButton>
               ))}
             </ToggleButtonGroup>
@@ -177,8 +172,8 @@ export const FilterPage: React.FC = () => {
       </fieldset>
 
       <Button type="submit" variant="danger">
-          Go To Result
-        </Button>
+        Go To Result
+      </Button>
     </Form>
   );
 };

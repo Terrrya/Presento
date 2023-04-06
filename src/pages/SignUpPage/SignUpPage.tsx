@@ -23,21 +23,21 @@ export const SignUpPage: React.FC = () => {
       const createdUser = await createUserOnServer(user);
       console.log('createdUser');
       console.log(createdUser);
-      
+
       navigate('/login');
     } catch (error: any) {
       const errorObject = await error;
       switch (Object.keys(errorObject)[0]) {
         case 'email':
-          setErrorEmail(Object.values<string>(errorObject)[0])
+          setErrorEmail(Object.values<string>(errorObject)[0]);
           break;
         case 'password':
-          setErrorPassword(Object.values<string>(errorObject)[0])
+          setErrorPassword(Object.values<string>(errorObject)[0]);
           break;
         default:
           break;
       }
-      
+
       // console.log(errorObject);
     }
   };
@@ -105,14 +105,19 @@ export const SignUpPage: React.FC = () => {
               placeholder="Enter email"
               name="email"
               value={values.email}
-              onChange={(e) => {handleChange(e); setErrorEmail('')}}
+              onChange={(e) => {
+                handleChange(e);
+                setErrorEmail('');
+              }}
               isValid={touched.email && !errors.email && !errorEmail}
-              isInvalid={touched.email && !!errors.email || !!errorEmail}
+              isInvalid={(touched.email && !!errors.email) || !!errorEmail}
               // onFocus={() => setDidFocusEmail(true)}
               // isValid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !errors.email : false}
               // isInvalid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !!errors.email : false}
             />
-            <Form.Control.Feedback type="invalid">{errors.email || errorEmail}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {errors.email || errorEmail}
+            </Form.Control.Feedback>
             {/* <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback> */}
           </Form.Group>
 
@@ -124,14 +129,19 @@ export const SignUpPage: React.FC = () => {
               name="password"
               autoComplete="off"
               value={values.password}
-              onChange={(e) => {handleChange(e); setErrorPassword('')}}
+              onChange={(e) => {
+                handleChange(e);
+                setErrorPassword('');
+              }}
               isValid={touched.password && !errors.password && !errorPassword}
-              isInvalid={touched.password && !!errors.password || !!errorPassword}
+              isInvalid={(touched.password && !!errors.password) || !!errorPassword}
               // onFocus={() => setDidFocusPassword(true)}
               // isValid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !errors.password : false}
               // isInvalid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !!errors.password : false}
             />
-            <Form.Control.Feedback type="invalid">{errors.password || errorPassword}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {errors.password || errorPassword}
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group className="mb-2" controlId="formBasicRepeatPassword">

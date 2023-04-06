@@ -12,6 +12,7 @@ import { LoginPage } from './pages/LoginPage';
 import { MainPage } from './pages/MainPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { FilterPage } from './pages/FilterPage';
+import { ResultPage } from './pages/ResultPage';
 
 const router = createHashRouter([
   {
@@ -42,6 +43,11 @@ const router = createHashRouter([
       {
         path: 'filter',
         element: <FilterPage />
+      },
+
+      {
+        path: 'gifts',
+        element: <ResultPage />
       }
     ]
   }

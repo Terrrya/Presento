@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
 
       <div className="footer__img-continer">
         Presento
-        <br/>
+        <br />
         Copyright © 2023.
       </div>
 

@@ -33,7 +33,7 @@ export const LoginPage: React.FC = () => {
         window.location.reload();
       } catch (error: any) {
         const x = await error;
-        setErrorMessage(Object.values<string>(x)[0])
+        setErrorMessage(Object.values<string>(x)[0]);
         // console.log(x);
       }
     };
@@ -66,10 +66,13 @@ export const LoginPage: React.FC = () => {
               placeholder="Enter email"
               name="email"
               value={values.email}
-              onChange={(e) => {handleChange(e); setErrorMessage('')}}
+              onChange={(e) => {
+                handleChange(e);
+                setErrorMessage('');
+              }}
               autoComplete="email"
-              // isValid={touched.email && !errors.email&& !errorMessage} 
-              isInvalid={touched.email && !!errors.email || !!errorMessage}
+              // isValid={touched.email && !errors.email&& !errorMessage}
+              isInvalid={(touched.email && !!errors.email) || !!errorMessage}
             />
             <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
           </Form.Group>
@@ -81,12 +84,17 @@ export const LoginPage: React.FC = () => {
               placeholder="Password"
               name="password"
               value={values.password}
-              onChange={(e) => {handleChange(e); setErrorMessage('')}}
+              onChange={(e) => {
+                handleChange(e);
+                setErrorMessage('');
+              }}
               autoComplete="current-password"
               // isValid={touched.password && !errors.password && !errorMessage}
-              isInvalid={touched.password && !!errors.password || !!errorMessage}
+              isInvalid={(touched.password && !!errors.password) || !!errorMessage}
             />
-            <Form.Control.Feedback type="invalid">{errors.password || errorMessage}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {errors.password || errorMessage}
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Button className="form__submit" type="submit">

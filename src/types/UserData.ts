@@ -1,3 +1,3 @@
-import { User } from './User'
+import { User } from './User';
 
-export type UserData = Omit<User, 'password'>
+export type UserData = Omit<User, 'password'>;

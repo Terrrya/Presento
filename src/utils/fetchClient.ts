@@ -12,7 +12,7 @@ function request<T>(url: string, method: RequestMethod = 'GET', data: any = null
   if (data) {
     options.body = JSON.stringify(data);
     options.headers = {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
       // Authorization: `Token ${userToken}`,
     };
   }
@@ -22,13 +22,13 @@ function request<T>(url: string, method: RequestMethod = 'GET', data: any = null
 
     options.headers = {
       ...options.headers,
-      Authorization: `Token ${userToken}`,
+      Authorization: `Token ${userToken}`
     };
   }
 
   return fetch(BASE_URL + url, options).then((response) => {
     if (!response.ok) {
-      return Promise.reject(response.json())
+      return Promise.reject(response.json());
     }
 
     return response.json();

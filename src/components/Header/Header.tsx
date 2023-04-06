@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
   const getUserData = async () => {
     try {
       const { first_name } = await getUserDataFromServer();
-      setUserName(first_name)
+      setUserName(first_name);
     } catch (error) {
       console.log(error);
     }
@@ -35,17 +35,20 @@ export const Header: React.FC = () => {
 
         {token ? (
           <>
-            <h4 className="ms-auto" style={{'color': 'white', 'marginRight': '20px'}}>
+            <h4 className="ms-auto" style={{ color: 'white', marginRight: '20px' }}>
               {`Hello, ${userName}`}
             </h4>
             <Link to="profile">
               <Button variant="primary">Profile</Button>
             </Link>
             <Link to="/">
-              <Button variant="primary" onClick={() => {
-                sessionStorage.removeItem('token');
-                window.location.reload();
-              }}>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  sessionStorage.removeItem('token');
+                  window.location.reload();
+                }}
+              >
                 Log Out
               </Button>
             </Link>
@@ -60,7 +63,6 @@ export const Header: React.FC = () => {
             </Link>
           </>
         )}
-
       </Stack>
     </header>
   );

@@ -11,4 +11,4 @@ export const checkObjectEqual = (object1: any, object2: any) => {
     }
   }
   return true;
-}
+};
