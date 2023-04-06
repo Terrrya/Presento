@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
+import { useGifts } from '../../App';
 
 export const ResultPage: React.FC = () => {
+  const { gifts } = useGifts();
   return (
     <Row xs={1} md={5} className="g-4">
       {Array.from({ length: 10 }).map((_, idx) => (

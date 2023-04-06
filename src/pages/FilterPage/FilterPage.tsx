@@ -3,8 +3,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 // import { Link } from 'react-router-dom';
 import { Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-import { useOutletContext } from 'react-router-dom';
 import { useGifts } from '../../App';
+import { getGiftsFromServer } from '../../api/gifts';
+import { useSearchParams } from 'react-router-dom';
 
 const agesInitial = [
   { label: 'Under 16 y.o.', id: '0-16' },
@@ -24,19 +25,48 @@ const likesInitial = ['Sport', 'Beauty', 'Cars', 'Fashion', 'IT', 'Music'];
 
 export const FilterPage: React.FC = () => {
   const group = useRef<HTMLAnchorElement | null>(null);
-  const { setGifts } = useGifts();
-
   useEffect(() => {
     if (group.current) {
       group.current.classList.remove('btn-group');
     }
   }, []);
 
-  const [age, setAge] = useState('0-16');
-  const [gender, setGender] = useState('Male');
+  const [age, setAge] = useState(agesInitial[0].id);
+  const [gender, setGender] = useState(gendersInitial[0]);
   const [occasion, setOccasion] = useState('');
   const [budgets, setBudgets] = useState<string[]>([]);
   const [likes, setLikes] = useState<string[]>([]);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { setGifts } = useGifts();
+
+
+  const getGifts = async (filterParams: URLSearchParams) => {
+    try {
+      const gifts = await getGiftsFromServer('?' + filterParams);
+      console.log('gifts');
+      console.log(gifts);
+      setGifts(gifts);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const updateSearchParams = (params: {[key: string]: string[] | string }) => {
+    Object.entries(params).forEach(([key, value]) => {
+      if (!value.length ) {
+        searchParams.delete(key);
+      } else if (Array.isArray(value)) {
+        searchParams.delete(key);
+        
+        searchParams.append(key, value.join());
+      } else {
+        searchParams.set(key, value);
+      }
+    })
+
+    setSearchParams(searchParams);
+  }
 
   const handleChangeCheckbox = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -54,7 +84,8 @@ export const FilterPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({ age, gender, occasion, budgets, likes });
+    updateSearchParams({ age, gender, occasion, budgets, likes });
+    getGifts(searchParams);
   };
 
   return (
@@ -87,15 +118,15 @@ export const FilterPage: React.FC = () => {
             Gender
           </Form.Label>
           <Col sm={10}>
-            {gendersInitial.map((gender) => (
+            {gendersInitial.map((sex) => (
               <Form.Check
-                key={gender}
+                key={sex}
                 type="radio"
-                label={gender}
+                label={sex}
                 name="gender"
-                id={gender}
-                value={gender}
-                checked={gender === 'Male'}
+                id={sex}
+                value={sex}
+                checked={gender === sex}
                 onChange={(e) => setGender(e.target.value)}
               />
             ))}

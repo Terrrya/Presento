@@ -18,7 +18,7 @@ function request<T>(url: string, method: RequestMethod = 'GET', data: any = null
   }
 
   if (url !== '/api/user/register/' && url !== '/api/user/token/') {
-    console.log(userToken);
+    // console.log(userToken);
 
     options.headers = {
       ...options.headers,
