@@ -1,3 +1,30 @@
 .header {
-  background: #cb5c68;
+  background: $light-pink;
+  padding: 2px 0;
+  box-shadow: 0 -1px 0 rgba(67, 68, 78, 0.1) inset;
+  &__container {
+    max-width: 2000px;
+  }
+
+  &__content {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+  }
+
+  &__btn-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__button {
+    width: 180px;
+  }
+
+  &__greeting {
+    margin-right: 30px;
+    font-size: 28px;
+    font-style: italic;
+  }
 }

@@ -1,8 +1,11 @@
 .footer {
-  display: flex;
-  justify-content: end;
   padding: 16px 0;
-  background: #ddd;
+  background: #eee;
+
+  &__content {
+    display: flex;
+    justify-content: end;
+  }
 
   &__link-continer {
     display: flex;
@@ -50,7 +53,7 @@
   }
 
   &__img {
-    border-radius: 50%;
+    height: 30px;
   }
 
 }

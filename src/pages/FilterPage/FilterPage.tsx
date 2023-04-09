@@ -6,7 +6,13 @@ import { Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import { useGifts } from '../../App';
 import { getGiftsFromServer } from '../../api/gifts';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { agesInitial, gendersInitial, occasionsInitial, budgetsInitial, likesInitial } from '../../initial_data/filterParams';
+import {
+  agesInitial,
+  gendersInitial,
+  occasionsInitial,
+  budgetsInitial,
+  likesInitial
+} from '../../initial_data/filterParams';
 
 export const FilterPage: React.FC = () => {
   const group = useRef<HTMLAnchorElement | null>(null);
@@ -36,23 +42,23 @@ export const FilterPage: React.FC = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  const updateSearchParams = (params: {[key: string]: string[] | string }) => {
+  const updateSearchParams = (params: { [key: string]: string[] | string }) => {
     Object.entries(params).forEach(([key, value]) => {
-      if (!value.length ) {
+      if (!value.length) {
         searchParams.delete(key);
       } else if (Array.isArray(value)) {
         searchParams.delete(key);
-        
+
         searchParams.append(key, value.join());
       } else {
         searchParams.set(key, value);
       }
-    })
+    });
 
     setSearchParams(searchParams);
-  }
+  };
 
   const handleChangeCheckbox = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -131,7 +137,7 @@ export const FilterPage: React.FC = () => {
               value={occasion}
               onChange={(e) => setOccasion(e.target.value)}
             >
-              {occasionsInitial.map(occasion => (
+              {occasionsInitial.map((occasion) => (
                 <option value={occasion} key={occasion}>
                   {occasion}
                 </option>

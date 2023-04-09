@@ -1,0 +1,128 @@
+.main-page {
+  position: relative;
+  &__content {
+    min-height: calc(100vh - 80px - 60px);
+
+    @include onSmallDesktop {
+      // padding-top: 48px;
+    }
+  }
+
+  &__info {
+    @include onSmallDesktop {
+      max-width: 440px;
+    }
+  }
+
+  &__title {
+    margin-top: 36px;
+
+    @extend %Domine700;
+    font-size: 36px;
+    line-height: 120%;
+    color: $dark-orange;
+    letter-spacing: -0.01em;
+    text-align: center;
+
+    @include onTablet {
+      margin-top: 56px;
+      font-size: 46px;
+    }
+
+    @include onSmallDesktop {
+      font-size: 46px;
+    }
+
+    @include onDesktop {
+      font-size: 52px;
+    }
+
+    &--italic {
+      line-height: 150%;
+      font-style: italic;
+      color: $accent-orange;
+    }
+  }
+
+  &__description {
+    margin-top: 32px;
+
+    @include onTablet {
+      margin-top: 24px;
+    }
+
+    @include onSmallDesktop {
+      margin-top: 32px;
+    }
+
+    @extend %OpenSans400;
+    font-size: 20px;
+    line-height: 150%;
+    text-align:justify;
+  }
+
+  &__button {
+    margin-top: 72px;
+    height: 56px;
+    @include onTablet {
+      margin-top: 56px;
+    }
+
+    @include onSmallDesktop {
+      margin-top: 84px;
+    }
+  }
+
+  &__slider {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 35vh;
+
+    @include onTablet {
+      height: 390px;
+    }
+    
+    @include onSmallDesktop {
+      top: 160px;
+      bottom: 76px;
+      height: auto;
+      left: 50%;
+    }
+
+    @include onDesktop {
+      left: 55%;
+    }
+  }
+  
+}
+
+.slider {
+  &__content {
+    display: flex;
+    height: 100%;
+    border-radius: 30px 0 0 0;
+  }
+
+  &__img-container {
+    position: relative;
+    // width: 100%;
+    height: 100%;
+    border-radius: 30px 0 0 0;
+  }
+
+  &__image {
+    position: absolute;
+    height: 100%;
+    // width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 30px 0 0 0;
+  }
+
+  &__text {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+  }
+}

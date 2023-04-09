@@ -1,24 +1,20 @@
 .app {
-  // text-align: center;
-  background: #ffeefc;
-  &__title {
-    margin-top: 160px;
-    font-size: 48px;
-  }
-
-  &__description {
-    font-size: 24px;
-  }
+  background: $light-pink;
+  // background-image: url(../../images/image42.svg);
+  // background-blend-mode: multiply;
+  // background-blend-mode:color-burn;
 
   &__content {
-    min-height: calc(100vh - 80px - 76px);
-    // background-image: url(../images/background.jpg);
+
+    // position: relative;
+    height: calc(100vh - 80px - 60px);
+
     // background-size: cover;
-    // background-repeat: no-repeat;
+    background-repeat: repeat;
   }
 
   &__footer {
-    position: relative;
+    position: absolute;
     bottom: 0;
     right: 0;
     left: 0;

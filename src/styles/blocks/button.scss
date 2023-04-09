@@ -1,0 +1,39 @@
+.button {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  @include onTablet {
+    // width: 264px;
+  }
+
+  height: 46px;
+  border: 2px solid $accent-orange;
+  border-radius: 32px;
+  background-color: transparent;
+
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  text-transform: uppercase;
+  color: $accent-orange;
+
+  transition: all $transition-duration;
+
+  &:active {
+    transform: scale(1.05);
+    background-color: $dark-orange;
+    color: $white;
+  }
+
+  &:hover {
+    background-color: $accent-orange;
+    color: $white;
+  }
+
+  &__icon {
+    margin-right: 8px;
+  }
+}

@@ -30,6 +30,7 @@ export const SignUpPage: React.FC = () => {
       switch (Object.keys(errorObject)[0]) {
         case 'email':
           setErrorEmail(Object.values<string>(errorObject)[0]);
+          0;
           break;
         case 'password':
           setErrorPassword(Object.values<string>(errorObject)[0]);

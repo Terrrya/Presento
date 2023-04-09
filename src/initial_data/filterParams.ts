@@ -7,7 +7,14 @@ export const agesInitial = [
 
 export const gendersInitial = ['Male', 'Female', 'Both'];
 
-export const occasionsInitial = ['', 'Birthday', 'New Year', 'Valentines Day', 'Graduation', 'Wedding'];
+export const occasionsInitial = [
+  '',
+  'Birthday',
+  'New Year',
+  'Valentines Day',
+  'Graduation',
+  'Wedding'
+];
 
 export const budgetsInitial = [
   { label: '$', id: '0-99' },
