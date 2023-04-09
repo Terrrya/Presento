@@ -1,13 +1,13 @@
+from decimal import Decimal
+
 from django.db.models import Q
-from django.shortcuts import render
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import extend_schema, OpenApiParameter
-from rest_framework import generics, viewsets, mixins
+from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAuthenticated
 
 from gift.models import Gift
 from gift.serializers import GiftSerializer
-from decimal import Decimal
 
 
 class GiftViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
