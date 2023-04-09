@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Presento/static/css/main.4d2b6972.css",
-    "main.js": "/Presento/static/js/main.a7e178b6.js",
+    "main.css": "/Presento/static/css/main.c67c62a9.css",
+    "main.js": "/Presento/static/js/main.32ad24b6.js",
+    "static/media/gift11.jpg": "/Presento/static/media/gift11.f7a2bb53ceab6b999985.jpg",
+    "static/media/gift13.jpg": "/Presento/static/media/gift13.2eecbbf767c6d8e258cb.jpg",
+    "static/media/gift12.jpg": "/Presento/static/media/gift12.2cbe684bd051dfdcc402.jpg",
     "static/media/fa-solid-900.ttf": "/Presento/static/media/fa-solid-900.2877d54f94f30c5d563c.ttf",
-    "static/media/gift3.jpg": "/Presento/static/media/gift3.79ed5492f1a5c11994c4.jpg",
     "static/media/fa-brands-400.ttf": "/Presento/static/media/fa-brands-400.13e40630e5866f777de8.ttf",
     "static/media/fa-solid-900.woff2": "/Presento/static/media/fa-solid-900.bdb9e23299f9d1320a8b.woff2",
     "static/media/fa-brands-400.woff2": "/Presento/static/media/fa-brands-400.7be2266f1be21c44ecd4.woff2",
-    "static/media/gift2.jpg": "/Presento/static/media/gift2.2ae5abe3fa3ff8652e0b.jpg",
-    "static/media/gift1.jpg": "/Presento/static/media/gift1.835507131592392472dc.jpg",
     "static/media/fa-regular-400.ttf": "/Presento/static/media/fa-regular-400.146404900f7550a9719d.ttf",
     "static/media/fa-regular-400.woff2": "/Presento/static/media/fa-regular-400.8bedd7cfa43a6c358cdd.woff2",
-    "static/media/newLogo.png": "/Presento/static/media/newLogo.b49bad5da956932a0513.png",
+    "static/media/newLogo.png": "/Presento/static/media/newLogo.b69c0dcbd585a1d11f75.png",
     "static/media/fa-v4compatibility.ttf": "/Presento/static/media/fa-v4compatibility.6c0a7b774ffa1cf0a059.ttf",
     "static/media/fa-v4compatibility.woff2": "/Presento/static/media/fa-v4compatibility.497d535001197a9c5b38.woff2",
     "index.html": "/Presento/index.html",
-    "main.4d2b6972.css.map": "/Presento/static/css/main.4d2b6972.css.map",
-    "main.a7e178b6.js.map": "/Presento/static/js/main.a7e178b6.js.map"
+    "main.c67c62a9.css.map": "/Presento/static/css/main.c67c62a9.css.map",
+    "main.32ad24b6.js.map": "/Presento/static/js/main.32ad24b6.js.map"
   },
   "entrypoints": [
-    "static/css/main.4d2b6972.css",
-    "static/js/main.a7e178b6.js"
+    "static/css/main.c67c62a9.css",
+    "static/js/main.32ad24b6.js"
   ]
 }
