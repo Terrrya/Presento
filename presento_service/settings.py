@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import os
+import os, sys
 from datetime import timedelta
 from pathlib import Path
 
@@ -99,8 +99,9 @@ DATABASES = {
 }
 
 # dj-database-url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES["default"].update(db_from_env)
+if "test" not in sys.argv:
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES["default"].update(db_from_env)
 
 
 # Password validation
