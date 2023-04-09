@@ -1,14 +1,14 @@
 // import classNames from 'classnames';
 import newLogo from '../../images/newLogo.png';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useToken from '../../utils/useToken';
 import { getUserDataFromServer } from '../../api/user';
 
 export const Header: React.FC = () => {
   const { token } = useToken();
   const [userName, setUserName] = useState('');
-
+  const navigate = useNavigate();
   const getUserData = async () => {
     try {
       const { first_name } = await getUserDataFromServer();
@@ -27,6 +27,7 @@ export const Header: React.FC = () => {
   const logOut = () => {
     sessionStorage.removeItem('token');
     window.location.reload();
+    navigate('/');
   };
 
   return (
@@ -34,7 +35,7 @@ export const Header: React.FC = () => {
       <div className="container container--hf">
         <div className="header__content">
           <Link to="/" className="header__logo-container">
-            <img src={newLogo} alt="Presento" height="80px" />
+            <img src={newLogo} alt="Presento" className='header__logo'/>
           </Link>
 
           <div className="header__btn-container">

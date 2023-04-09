@@ -3,9 +3,9 @@ import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getUserDataFromServer } from '../../api/user';
 import useToken from '../../utils/useToken';
-import gift1 from '../../images/gift1.jpg';
-import gift2 from '../../images/gift2.jpg';
-import gift3 from '../../images/gift3.jpg';
+import gift11 from '../../images/gift11.jpg';
+import gift12 from '../../images/gift12.jpg';
+import gift13 from '../../images/gift13.jpg';
 import classNames from 'classnames';
 export const MainPage: React.FC = () => {
   const { token } = useToken();
@@ -50,14 +50,14 @@ export const MainPage: React.FC = () => {
           <div className="main-page__slider slider">
             <Carousel className="slider__content">
               <Carousel.Item className="slider__img-container">
-                <img className="d-block w-100 slider__image" src={gift1} alt="First slide" />
+                <img className="d-block w-100 slider__image" src={gift11} alt="First slide" />
                 <Carousel.Caption className="slider__text">
                   <h3>Many varieties of gifts</h3>
                   <p>You can choose ocassion, budget and other parametrs</p>
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item className="slider__img-container">
-                <img className="d-block w-100 slider__image" src={gift2} alt="Second slide" />
+                <img className="d-block w-100 slider__image" src={gift12} alt="Second slide" />
 
                 <Carousel.Caption className="slider__text">
                   <h3>Many varieties of gifts</h3>
@@ -65,7 +65,7 @@ export const MainPage: React.FC = () => {
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item className="slider__img-container">
-                <img className="d-block w-100 slider__image" src={gift3} alt="Third slide" />
+                <img className="d-block w-100 slider__image" src={gift13} alt="Third slide" />
 
                 <Carousel.Caption className="slider__text">
                   <h3>Many varieties of gifts</h3>
