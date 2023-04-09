@@ -76,7 +76,7 @@ class GiftViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             OpenApiParameter(
                 "age",
                 type=OpenApiTypes.STR,
-                description="Filter by age (ex. ?age=26-35). "
+                description="Filter by age (ex. ?age=26-45). "
                 "Can be: 0-16, 17-25, 26-45, 46-100.",
             ),
             OpenApiParameter(
