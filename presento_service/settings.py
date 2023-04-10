@@ -34,6 +34,7 @@ DEBUG = os.getenv("DJANGO_DEBUG")
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "test-presento.onrender.com",
+    "0.0.0.0",
 ]
 
 
@@ -93,15 +94,18 @@ WSGI_APPLICATION = "presento_service.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.environ["POSTGRES_HOST"],
+        "NAME": os.environ["POSTGRES_DB"],
+        "USER": os.environ["POSTGRES_USER"],
+        "PASSWORD": os.environ["POSTGRES_PASSWORD"],
     }
 }
-
-# dj-database-url
-if "test" not in sys.argv:
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES["default"].update(db_from_env)
+# #
+# # dj-database-url
+# if "test" not in sys.argv:
+#     db_from_env = dj_database_url.config(conn_max_age=500)
+#     DATABASES["default"].update(db_from_env)
 
 
 # Password validation
@@ -146,7 +150,8 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = "/vol/web/media"
+# MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
