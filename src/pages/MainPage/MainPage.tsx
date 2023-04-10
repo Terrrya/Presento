@@ -23,6 +23,7 @@ export const MainPage: React.FC = () => {
     <div className="main-page">
       <div className="container">
         <div className="main-page__content">
+          <div>
           <h1 className="main-page__title">
             Struggling to find the gift for loved ones?
             <br />
@@ -46,6 +47,8 @@ export const MainPage: React.FC = () => {
               Choose gifts
             </Link>
           </div>
+          </div>
+
 
           <div className="main-page__slider slider">
             <Carousel className="slider__content">

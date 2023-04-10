@@ -1,7 +1,5 @@
 .main-page {
-  position: relative;
   &__content {
-    min-height: calc(100vh - 80px - 60px);
 
     @include onSmallDesktop {
       // padding-top: 48px;
@@ -23,8 +21,6 @@
   }
 
   &__title {
-    margin-top: 36px;
-
     @extend %Domine700;
     font-size: 36px;
     line-height: 120%;
@@ -33,7 +29,6 @@
     text-align: center;
 
     @include onTablet {
-      margin-top: 56px;
       font-size: 46px;
     }
 
@@ -91,8 +86,8 @@
     }
     
     @include onSmallDesktop {
-      top: 176px;
-      bottom: 76px;
+      top: 220px;
+      bottom: 0;
       // bottom: 140px;
       height: auto;
       left: 55%;

@@ -6,7 +6,8 @@
   @include onTablet {
     // width: 264px;
   }
-
+  
+  min-height: 46px;
   height: 46px;
   border: 2px solid $accent-orange;
   border-radius: 32px;
@@ -24,11 +25,10 @@
 
   &:active {
     transform: scale(1.05);
-    background-color: $dark-orange;
-    color: $white;
   }
 
   &:hover {
+    border: 2px solid $accent-orange;
     background-color: $accent-orange;
     color: $white;
   }

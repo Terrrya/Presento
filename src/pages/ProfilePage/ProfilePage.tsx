@@ -67,12 +67,14 @@ export const ProfilePage: React.FC = () => {
         }}
       >
         {({ handleSubmit, handleChange, values, touched, errors }) => (
-          <Form noValidate onSubmit={handleSubmit} className="form">
+          <div className='form-container'>
+          <Form noValidate onSubmit={handleSubmit} className="form" autoComplete="off">
             <h3 className="form__title">Your Personal Data</h3>
 
-            <Form.Group className="mb-2" controlId="formBasicFirstName">
-              <Form.Label>First Name</Form.Label>
+            <Form.Group className="form__field-container" controlId="formBasicFirstName">
+              <Form.Label className="form__field-title">First Name</Form.Label>
               <Form.Control
+              className="form__field"
                 type="text"
                 placeholder="First name"
                 name="firstName"
@@ -81,12 +83,13 @@ export const ProfilePage: React.FC = () => {
                 isValid={touched.firstName && !errors.firstName}
                 isInvalid={touched.firstName && !!errors.firstName}
               />
-              <Form.Control.Feedback type="invalid">{errors.firstName}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid"  className="form__field-feedback">{errors.firstName}</Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-2" controlId="formBasicLastName">
-              <Form.Label>Last Name</Form.Label>
+            <Form.Group className="form__field-container" controlId="formBasicLastName">
+              <Form.Label className="form__field-title">Last Name</Form.Label>
               <Form.Control
+              className="form__field"
                 type="text"
                 placeholder="Last name"
                 name="lastName"
@@ -95,12 +98,13 @@ export const ProfilePage: React.FC = () => {
                 isValid={touched.lastName && !errors.lastName}
                 isInvalid={touched.lastName && !!errors.lastName}
               />
-              <Form.Control.Feedback type="invalid">{errors.lastName}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid"  className="form__field-feedback">{errors.lastName}</Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-2" controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
+            <Form.Group className="form__field-container" controlId="formBasicEmail">
+              <Form.Label className="form__field-title">Email</Form.Label>
               <Form.Control
+              className="form__field"
                 type="email"
                 placeholder="Enter email"
                 name="email"
@@ -109,13 +113,14 @@ export const ProfilePage: React.FC = () => {
                 isValid={touched.email && !errors.email}
                 isInvalid={touched.email && !!errors.email}
               />
-              <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid"  className="form__field-feedback">{errors.email}</Form.Control.Feedback>
             </Form.Group>
 
-            <Button className="form__submit" type="submit">
-              Save changes
-            </Button>
+            <Button className="form__submit button" type="submit" variant="custom" onClick={e => e.currentTarget.blur()}>
+            Save changes
+          </Button>
           </Form>
+          </div>
         )}
       </Formik>
     );

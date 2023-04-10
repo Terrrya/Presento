@@ -62,12 +62,14 @@ export const SignUpPage: React.FC = () => {
       }}
     >
       {({ handleSubmit, handleChange, values, touched, errors }) => (
-        <Form noValidate onSubmit={handleSubmit} className="form">
-          <h3 className="form__title">Registration</h3>
+        <div className='form-container'>
+        <Form noValidate onSubmit={handleSubmit} className="form" autoComplete="off">
+          <h3 className="form__title">Create a profile</h3>
 
-          <Form.Group className="mb-2" controlId="formBasicFirstName">
-            <Form.Label>First Name</Form.Label>
+          <Form.Group className="form__field-container" controlId="formBasicFirstName">
+            <Form.Label className="form__field-title">First Name</Form.Label>
             <Form.Control
+              className="form__field"
               type="text"
               placeholder="First name"
               name="firstName"
@@ -79,12 +81,13 @@ export const SignUpPage: React.FC = () => {
               // isValid={(didFocusFirstName && values.firstName.trim()) ? !errors.firstName : false}
               // isInvalid={(didFocusFirstName && !touched.firstName) ? !!errors.firstName : false}
             />
-            <Form.Control.Feedback type="invalid">{errors.firstName}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid" className="form__field-feedback">{errors.firstName}</Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-2" controlId="formBasicLastName">
-            <Form.Label>Last Name</Form.Label>
+          <Form.Group className="form__field-container" controlId="formBasicLastName">
+            <Form.Label className="form__field-title">Last Name</Form.Label>
             <Form.Control
+            className="form__field"
               type="text"
               placeholder="Last name"
               name="lastName"
@@ -96,12 +99,13 @@ export const SignUpPage: React.FC = () => {
               // isValid={(didFocusLastName && values.lastName.trim()) ? !errors.lastName : false}
               // isInvalid={(didFocusLastName && !touched.lastName) ? !!errors.lastName : false}
             />
-            <Form.Control.Feedback type="invalid">{errors.lastName}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid"  className="form__field-feedback">{errors.lastName}</Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-2" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
+          <Form.Group className="form__field-container" controlId="formBasicEmail">
+            <Form.Label className="form__field-title">Email</Form.Label>
             <Form.Control
+            className="form__field"
               type="email"
               placeholder="Enter email"
               name="email"
@@ -116,19 +120,20 @@ export const SignUpPage: React.FC = () => {
               // isValid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !errors.email : false}
               // isInvalid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !!errors.email : false}
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid"  className="form__field-feedback">
               {errors.email || errorEmail}
             </Form.Control.Feedback>
             {/* <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback> */}
           </Form.Group>
 
-          <Form.Group className="mb-2" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+          <Form.Group className="form__field-container"  controlId="formBasicPassword">
+            <Form.Label className="form__field-title">Password</Form.Label>
             <Form.Control
+            className="form__field"
               type="password"
               placeholder="Password"
               name="password"
-              autoComplete="off"
+
               value={values.password}
               onChange={(e) => {
                 handleChange(e);
@@ -140,18 +145,19 @@ export const SignUpPage: React.FC = () => {
               // isValid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !errors.password : false}
               // isInvalid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !!errors.password : false}
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid"  className="form__field-feedback">
               {errors.password || errorPassword}
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-2" controlId="formBasicRepeatPassword">
-            <Form.Label>Confirm Password</Form.Label>
+          <Form.Group className="form__field-container" controlId="formBasicRepeatPassword">
+            <Form.Label className="form__field-title">Confirm Password</Form.Label>
             <Form.Control
+              className="form__field"
               type="password"
               placeholder="Repeat password"
               name="repeatPassword"
-              autoComplete="off"
+
               value={values.repeatPassword}
               onChange={handleChange}
               isValid={touched.repeatPassword && !errors.repeatPassword}
@@ -160,17 +166,18 @@ export const SignUpPage: React.FC = () => {
               // isValid={(!!didFocusRepeatPassword && values.repeatPassword.trim().length > 2 ) ? !errors.repeatPassword : false}
               // isInvalid={(!!didFocusRepeatPassword && values.repeatPassword.trim().length > 2 ) ? !!errors.repeatPassword : false}
             />
-            <Form.Control.Feedback type="invalid">{errors.repeatPassword}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid"  className="form__field-feedback">{errors.repeatPassword}</Form.Control.Feedback>
           </Form.Group>
 
-          <Button className="form__submit" type="submit">
+          <Button className="form__submit button" type="submit" variant="custom" onClick={e => e.currentTarget.blur()}>
             Submit form
           </Button>
 
           <Link to="/login" className="form__link">
-            <Button variant="link">Have an account?</Button>
+            Have an account?
           </Link>
         </Form>
+        </div>
       )}
     </Formik>
   );
