@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const BASE_URL = 'https://test-presento.onrender.com';
+const BASE_URL = 'http://16.16.80.60:8000';
 
 type RequestMethod = 'GET' | 'POST' | 'PATCH';
 
@@ -27,10 +27,9 @@ function request<T>(url: string, method: RequestMethod = 'GET', data: any = null
   }
 
   return fetch(BASE_URL + url, options).then((response) => {
-    if (!response.ok) {
+    if (!response.ok) {      
       return Promise.reject(response.json());
     }
-
     return response.json();
   });
 }
