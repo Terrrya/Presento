@@ -59,3 +59,6 @@ class Gift(models.Model):
     likes = models.CharField(
         max_length=15, choices=LikesChoices.choices, blank=True
     )
+
+    def __str__(self) -> str:
+        return self.title
