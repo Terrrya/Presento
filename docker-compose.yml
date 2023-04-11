@@ -8,9 +8,10 @@ services:
         volumes:
             - ./:/app
         command: >
-            sh -c "python manage.py wait_for_db
+            sh -c "python manage.py wait_for_db &&
                    python manage.py migrate &&
-                   python manage.py runserver 0.0.0.0:8000
+                   nohup python manage.py runserver 0.0.0.0:8001 &&
+                   stunnel stunnel/dev_https &&
                    python manage.py loaddata data_fixture.json"
         env_file:
             - .env

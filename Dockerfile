@@ -9,6 +9,8 @@ WORKDIR app/
 RUN apt-get update \
     && apt-get -y install libpq-dev gcc
 
+RUN apt-get -y install stunnel
+
 COPY . .
 
 RUN pip install -r requirements.txt

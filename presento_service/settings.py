@@ -38,7 +38,6 @@ ALLOWED_HOSTS = [
     "16.16.80.60",
 ]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -104,9 +103,9 @@ DATABASES = {
 }
 # #
 # # dj-database-url
-# if "test" not in sys.argv:
-#     db_from_env = dj_database_url.config(conn_max_age=500)
-#     DATABASES["default"].update(db_from_env)
+if "test" not in sys.argv:
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES["default"].update(db_from_env)
 
 
 # Password validation
