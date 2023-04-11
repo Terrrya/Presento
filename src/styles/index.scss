@@ -5,6 +5,7 @@
 body {
   scrollbar-width: thin; 
   @extend %OpenSans400;
+  scroll-behavior: smooth;
 }
 
 .btn-custom {
@@ -56,6 +57,7 @@ body {
 @import "blocks/app.scss";
 @import "blocks/button.scss";
 @import "blocks/form-container.scss";
+@import "blocks/link.scss";
 
 @import "blocks/header.scss";
 @import "blocks/footer.scss";
@@ -63,3 +65,4 @@ body {
 @import "blocks/main-page.scss";
 @import "blocks/form.scss";
 @import "blocks/fillter.scss";
+@import "blocks/catalog.scss";

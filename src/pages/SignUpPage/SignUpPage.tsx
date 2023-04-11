@@ -182,7 +182,7 @@ export const SignUpPage: React.FC = () => {
               Register
             </Button>
 
-            <Link to="/login" className="form__link">
+            <Link to="/login" className="link">
               Have an account?
             </Link>
           </Form>

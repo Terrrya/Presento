@@ -86,7 +86,12 @@ export const FilterPage: React.FC = () => {
         <h3 className="form__title">Choose your options</h3>
 
         <Form.Group as={Row} className="form__field-container">
-          <Form.Label as="legend" column sm={3} className="form__field-title form__field-title--large">
+          <Form.Label
+            as="legend"
+            column
+            sm={3}
+            className="form__field-title form__field-title--large"
+          >
             Age
           </Form.Label>
           <Col sm={6} className="filter">
@@ -109,38 +114,51 @@ export const FilterPage: React.FC = () => {
         </Form.Group>
 
         <Form.Group as={Row} className="form__field-container">
-          <Form.Label as="legend" column sm={3} className="form__field-title form__field-title--large">
+          <Form.Label
+            as="legend"
+            column
+            sm={3}
+            className="form__field-title form__field-title--large"
+          >
             Gender
           </Form.Label>
           <Col sm={6} className="filter">
             {gendersInitial.map((sex) => (
               <label className="filter__label" key={sex}>
-              <input
-                type="radio"
-                className="filter__input"
-                name="gender"
-                id={sex}
-                value={sex}
-                checked={gender === sex}
-                onChange={(e) => setGender(e.target.value)}
-              />
-              <div className="filter__design"></div>
-              <div className="filter__text">{sex}</div>
-            </label>
+                <input
+                  type="radio"
+                  className="filter__input"
+                  name="gender"
+                  id={sex}
+                  value={sex}
+                  checked={gender === sex}
+                  onChange={(e) => setGender(e.target.value)}
+                />
+                <div className="filter__design"></div>
+                <div className="filter__text">{sex}</div>
+              </label>
             ))}
           </Col>
         </Form.Group>
 
         <Form.Group as={Row} className="form__field-container">
-          <Form.Label as="legend" column sm={3} className="form__field-title form__field-title--large">
+          <Form.Label
+            as="legend"
+            column
+            sm={3}
+            className="form__field-title form__field-title--large"
+          >
             Occasion
           </Form.Label>
           <Col sm={6} className="filter">
             <Form.Select
               aria-label="Occasion"
-              className='filter__select'
+              className="filter__select"
               value={occasion}
-              onChange={(e) => {setOccasion(e.target.value); e.currentTarget.blur()}}
+              onChange={(e) => {
+                setOccasion(e.target.value);
+                e.currentTarget.blur();
+              }}
             >
               {occasionsInitial.map((occasion) => (
                 <option value={occasion} key={occasion} className="filter__option">
@@ -152,33 +170,48 @@ export const FilterPage: React.FC = () => {
         </Form.Group>
 
         <Form.Group as={Row} className="form__field-container">
-          <Form.Label as="legend" column sm={3} className="form__field-title form__field-title--large">
+          <Form.Label
+            as="legend"
+            column
+            sm={3}
+            className="form__field-title form__field-title--large"
+          >
             Budget
           </Form.Label>
           <Col sm={6} className="filter">
             {budgetsInitial.map(({ label, id }) => (
               <label className="filter__label" key={id}>
-              <input
-                type="checkbox"
-                className="filter__input"
-                name="budget"
-                id={id}
-                value={id}
-                onChange={(e) => handleChangeCheckbox(e, budgets, setBudgets)}
-              />
-              <div className="filter__design filter__design--checkbox"></div>
-              <div className="filter__text">{label}</div>
-            </label>
+                <input
+                  type="checkbox"
+                  className="filter__input"
+                  name="budget"
+                  id={id}
+                  value={id}
+                  onChange={(e) => handleChangeCheckbox(e, budgets, setBudgets)}
+                />
+                <div className="filter__design filter__design--checkbox"></div>
+                <div className="filter__text">{label}</div>
+              </label>
             ))}
           </Col>
         </Form.Group>
 
         <Form.Group as={Row} className="form__field-container">
-          <Form.Label as="legend" column sm={3} className="form__field-title form__field-title--large">
+          <Form.Label
+            as="legend"
+            column
+            sm={3}
+            className="form__field-title form__field-title--large"
+          >
             Likes
           </Form.Label>
           <Col sm={8} className="filter">
-            <ToggleButtonGroup type="checkbox" value={likes} className="filter__likes-wrapper" ref={group}>
+            <ToggleButtonGroup
+              type="checkbox"
+              value={likes}
+              className="filter__likes-wrapper"
+              ref={group}
+            >
               {likesInitial.map((like) => (
                 <ToggleButton
                   key={like}

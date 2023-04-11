@@ -109,7 +109,7 @@ export const LoginPage: React.FC = () => {
               Login
             </Button>
 
-            <Link to="/sign-up" className="form__link">
+            <Link to="/sign-up" className="link">
               Don&apos;t have an account yet?
             </Link>
           </Form>

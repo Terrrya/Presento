@@ -26,8 +26,8 @@ export const Header: React.FC = () => {
 
   const logOut = () => {
     sessionStorage.removeItem('token');
-    window.location.reload();
     navigate('/');
+    window.location.reload();
   };
 
   return (
@@ -44,7 +44,7 @@ export const Header: React.FC = () => {
             </p>
             {token ? (
               <>
-                <Link to="profile" className="button header__button">
+                <Link to="/profile" className="button header__button">
                   Profile
                 </Link>
                 <Link to="/" className="button header__button" onClick={logOut}>
@@ -53,10 +53,10 @@ export const Header: React.FC = () => {
               </>
             ) : (
               <>
-                <Link to="sign-up" className="button header__button">
+                <Link to="/sign-up" className="button header__button">
                   Sign Up
                 </Link>
-                <Link to="login" className="button header__button">
+                <Link to="/login" className="button header__button">
                   Sign In
                 </Link>
               </>

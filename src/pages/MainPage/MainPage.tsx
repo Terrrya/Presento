@@ -35,7 +35,7 @@ export const MainPage: React.FC = () => {
                 ones. It has a variety of options for any age, gender, occasion and even budget.
               </p>
 
-              <Link to={token ? 'filter' : 'login'} className=" main-page__button button">
+              <Link to={token ? '/filter' : '/login'} className=" main-page__button button">
                 <i
                   className={classNames(
                     'button__icon',
