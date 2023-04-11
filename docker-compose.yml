@@ -4,20 +4,17 @@ services:
         build:
             context: .
         ports:
-            - "8000:8000"
+            - "8001:8001"
         volumes:
             - ./:/app
         command: >
             sh -c "python manage.py wait_for_db &&
                    python manage.py migrate &&
-                   nohup python manage.py runserver 0.0.0.0:8001 &&
-                   stunnel stunnel/dev_https &&
-                   python manage.py loaddata data_fixture.json"
+                   nohup python manage.py runserver 0.0.0.0:8001"
         env_file:
             - .env
         depends_on:
             - db
-
 
     db:
         image: postgres:15-alpine
@@ -25,3 +22,10 @@ services:
             - "5432:5432"
         env_file:
             - .env
+
+    stunnel:
+        image: presento-app
+        ports:
+            - "8000:8000"
+        command: > 
+            sh -c "stunnel stunnel/dev_https"
