@@ -35,7 +35,7 @@ export const Header: React.FC = () => {
       <div className="container container--hf">
         <div className="header__content">
           <Link to="/" className="header__logo-container">
-            <img src={newLogo} alt="Presento" className='header__logo'/>
+            <img src={newLogo} alt="Presento" className="header__logo" />
           </Link>
 
           <div className="header__btn-container">

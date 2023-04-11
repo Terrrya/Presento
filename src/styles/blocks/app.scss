@@ -15,22 +15,6 @@
   }
 }
 
-
-.likes-wrapper {
-  // display: flex;
-  // gap: 8px;
-  // flex-wrap: wrap;
-}
-
-.like-item {
-  border-radius: 20px;
-  min-width: 100px;
-  margin-top: 10px;
-  &:not(:last-child) {
-    margin-right: 10px;
-  }
-}
-
 .gifts__container {
   padding: 40px 0;
   display: flex;

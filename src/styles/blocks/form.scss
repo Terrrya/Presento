@@ -15,6 +15,10 @@
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
+  &--filter {
+    max-width: 700px;
+  }
+
   &__field-container{
     width: 100%;
   }
@@ -28,6 +32,11 @@
   &__field-title {
     font-size: 18px;
     color: $dark-blue;
+
+    &--large {
+      padding-top: 4px;
+      font-size: 22px;
+    }
   }
 
   &__field {
@@ -57,7 +66,7 @@
   }
 
   &__submit {
-    margin: 10px 0 0;
+    margin: 20px 0 0;
     width: 100%;
   }
 
@@ -67,5 +76,6 @@
     color: $dark-blue;
     @include hover(color, $accent-orange);
   }
+
 }
 

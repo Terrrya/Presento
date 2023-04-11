@@ -67,59 +67,70 @@ export const ProfilePage: React.FC = () => {
         }}
       >
         {({ handleSubmit, handleChange, values, touched, errors }) => (
-          <div className='form-container'>
-          <Form noValidate onSubmit={handleSubmit} className="form" autoComplete="off">
-            <h3 className="form__title">Your Personal Data</h3>
+          <div className="form-container">
+            <Form noValidate onSubmit={handleSubmit} className="form" autoComplete="off">
+              <h3 className="form__title">Your Personal Data</h3>
 
-            <Form.Group className="form__field-container" controlId="formBasicFirstName">
-              <Form.Label className="form__field-title">First Name</Form.Label>
-              <Form.Control
-              className="form__field"
-                type="text"
-                placeholder="First name"
-                name="firstName"
-                value={values.firstName}
-                onChange={handleChange}
-                isValid={touched.firstName && !errors.firstName}
-                isInvalid={touched.firstName && !!errors.firstName}
-              />
-              <Form.Control.Feedback type="invalid"  className="form__field-feedback">{errors.firstName}</Form.Control.Feedback>
-            </Form.Group>
+              <Form.Group className="form__field-container" controlId="formBasicFirstName">
+                <Form.Label className="form__field-title">First Name</Form.Label>
+                <Form.Control
+                  className="form__field"
+                  type="text"
+                  placeholder="First name"
+                  name="firstName"
+                  value={values.firstName}
+                  onChange={handleChange}
+                  isValid={touched.firstName && !errors.firstName}
+                  isInvalid={touched.firstName && !!errors.firstName}
+                />
+                <Form.Control.Feedback type="invalid" className="form__field-feedback">
+                  {errors.firstName}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-            <Form.Group className="form__field-container" controlId="formBasicLastName">
-              <Form.Label className="form__field-title">Last Name</Form.Label>
-              <Form.Control
-              className="form__field"
-                type="text"
-                placeholder="Last name"
-                name="lastName"
-                value={values.lastName}
-                onChange={handleChange}
-                isValid={touched.lastName && !errors.lastName}
-                isInvalid={touched.lastName && !!errors.lastName}
-              />
-              <Form.Control.Feedback type="invalid"  className="form__field-feedback">{errors.lastName}</Form.Control.Feedback>
-            </Form.Group>
+              <Form.Group className="form__field-container" controlId="formBasicLastName">
+                <Form.Label className="form__field-title">Last Name</Form.Label>
+                <Form.Control
+                  className="form__field"
+                  type="text"
+                  placeholder="Last name"
+                  name="lastName"
+                  value={values.lastName}
+                  onChange={handleChange}
+                  isValid={touched.lastName && !errors.lastName}
+                  isInvalid={touched.lastName && !!errors.lastName}
+                />
+                <Form.Control.Feedback type="invalid" className="form__field-feedback">
+                  {errors.lastName}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-            <Form.Group className="form__field-container" controlId="formBasicEmail">
-              <Form.Label className="form__field-title">Email</Form.Label>
-              <Form.Control
-              className="form__field"
-                type="email"
-                placeholder="Enter email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                isValid={touched.email && !errors.email}
-                isInvalid={touched.email && !!errors.email}
-              />
-              <Form.Control.Feedback type="invalid"  className="form__field-feedback">{errors.email}</Form.Control.Feedback>
-            </Form.Group>
+              <Form.Group className="form__field-container" controlId="formBasicEmail">
+                <Form.Label className="form__field-title">Email</Form.Label>
+                <Form.Control
+                  className="form__field"
+                  type="email"
+                  placeholder="Enter email"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  isValid={touched.email && !errors.email}
+                  isInvalid={touched.email && !!errors.email}
+                />
+                <Form.Control.Feedback type="invalid" className="form__field-feedback">
+                  {errors.email}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-            <Button className="form__submit button" type="submit" variant="custom" onClick={e => e.currentTarget.blur()}>
-            Save changes
-          </Button>
-          </Form>
+              <Button
+                className="form__submit button"
+                type="submit"
+                variant="custom"
+                onClick={(e) => e.currentTarget.blur()}
+              >
+                Save changes
+              </Button>
+            </Form>
           </div>
         )}
       </Formik>

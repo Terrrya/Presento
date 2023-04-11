@@ -62,121 +62,130 @@ export const SignUpPage: React.FC = () => {
       }}
     >
       {({ handleSubmit, handleChange, values, touched, errors }) => (
-        <div className='form-container'>
-        <Form noValidate onSubmit={handleSubmit} className="form" autoComplete="off">
-          <h3 className="form__title">Create a profile</h3>
+        <div className="form-container">
+          <Form noValidate onSubmit={handleSubmit} className="form" autoComplete="off">
+            <h3 className="form__title">Create a profile</h3>
 
-          <Form.Group className="form__field-container" controlId="formBasicFirstName">
-            <Form.Label className="form__field-title">First Name</Form.Label>
-            <Form.Control
-              className="form__field"
-              type="text"
-              placeholder="First name"
-              name="firstName"
-              value={values.firstName}
-              onChange={handleChange}
-              isValid={touched.firstName && !errors.firstName}
-              isInvalid={touched.firstName && !!errors.firstName}
-              // onFocus={() => setDidFocusFirstName(true)}
-              // isValid={(didFocusFirstName && values.firstName.trim()) ? !errors.firstName : false}
-              // isInvalid={(didFocusFirstName && !touched.firstName) ? !!errors.firstName : false}
-            />
-            <Form.Control.Feedback type="invalid" className="form__field-feedback">{errors.firstName}</Form.Control.Feedback>
-          </Form.Group>
+            <Form.Group className="form__field-container" controlId="formBasicFirstName">
+              <Form.Label className="form__field-title">First Name</Form.Label>
+              <Form.Control
+                className="form__field"
+                type="text"
+                placeholder="First name"
+                name="firstName"
+                value={values.firstName}
+                onChange={handleChange}
+                isValid={touched.firstName && !errors.firstName}
+                isInvalid={touched.firstName && !!errors.firstName}
+                // onFocus={() => setDidFocusFirstName(true)}
+                // isValid={(didFocusFirstName && values.firstName.trim()) ? !errors.firstName : false}
+                // isInvalid={(didFocusFirstName && !touched.firstName) ? !!errors.firstName : false}
+              />
+              <Form.Control.Feedback type="invalid" className="form__field-feedback">
+                {errors.firstName}
+              </Form.Control.Feedback>
+            </Form.Group>
 
-          <Form.Group className="form__field-container" controlId="formBasicLastName">
-            <Form.Label className="form__field-title">Last Name</Form.Label>
-            <Form.Control
-            className="form__field"
-              type="text"
-              placeholder="Last name"
-              name="lastName"
-              value={values.lastName}
-              onChange={handleChange}
-              isValid={touched.lastName && !errors.lastName}
-              isInvalid={touched.lastName && !!errors.lastName}
-              // onFocus={() => setDidFocusLastName(true)}
-              // isValid={(didFocusLastName && values.lastName.trim()) ? !errors.lastName : false}
-              // isInvalid={(didFocusLastName && !touched.lastName) ? !!errors.lastName : false}
-            />
-            <Form.Control.Feedback type="invalid"  className="form__field-feedback">{errors.lastName}</Form.Control.Feedback>
-          </Form.Group>
+            <Form.Group className="form__field-container" controlId="formBasicLastName">
+              <Form.Label className="form__field-title">Last Name</Form.Label>
+              <Form.Control
+                className="form__field"
+                type="text"
+                placeholder="Last name"
+                name="lastName"
+                value={values.lastName}
+                onChange={handleChange}
+                isValid={touched.lastName && !errors.lastName}
+                isInvalid={touched.lastName && !!errors.lastName}
+                // onFocus={() => setDidFocusLastName(true)}
+                // isValid={(didFocusLastName && values.lastName.trim()) ? !errors.lastName : false}
+                // isInvalid={(didFocusLastName && !touched.lastName) ? !!errors.lastName : false}
+              />
+              <Form.Control.Feedback type="invalid" className="form__field-feedback">
+                {errors.lastName}
+              </Form.Control.Feedback>
+            </Form.Group>
 
-          <Form.Group className="form__field-container" controlId="formBasicEmail">
-            <Form.Label className="form__field-title">Email</Form.Label>
-            <Form.Control
-            className="form__field"
-              type="email"
-              placeholder="Enter email"
-              name="email"
-              value={values.email}
-              onChange={(e) => {
-                handleChange(e);
-                setErrorEmail('');
-              }}
-              isValid={touched.email && !errors.email && !errorEmail}
-              isInvalid={(touched.email && !!errors.email) || !!errorEmail}
-              // onFocus={() => setDidFocusEmail(true)}
-              // isValid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !errors.email : false}
-              // isInvalid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !!errors.email : false}
-            />
-            <Form.Control.Feedback type="invalid"  className="form__field-feedback">
-              {errors.email || errorEmail}
-            </Form.Control.Feedback>
-            {/* <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback> */}
-          </Form.Group>
+            <Form.Group className="form__field-container" controlId="formBasicEmail">
+              <Form.Label className="form__field-title">Email</Form.Label>
+              <Form.Control
+                className="form__field"
+                type="email"
+                placeholder="Enter email"
+                name="email"
+                value={values.email}
+                onChange={(e) => {
+                  handleChange(e);
+                  setErrorEmail('');
+                }}
+                isValid={touched.email && !errors.email && !errorEmail}
+                isInvalid={(touched.email && !!errors.email) || !!errorEmail}
+                // onFocus={() => setDidFocusEmail(true)}
+                // isValid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !errors.email : false}
+                // isInvalid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !!errors.email : false}
+              />
+              <Form.Control.Feedback type="invalid" className="form__field-feedback">
+                {errors.email || errorEmail}
+              </Form.Control.Feedback>
+              {/* <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback> */}
+            </Form.Group>
 
-          <Form.Group className="form__field-container"  controlId="formBasicPassword">
-            <Form.Label className="form__field-title">Password</Form.Label>
-            <Form.Control
-            className="form__field"
-              type="password"
-              placeholder="Password"
-              name="password"
+            <Form.Group className="form__field-container" controlId="formBasicPassword">
+              <Form.Label className="form__field-title">Password</Form.Label>
+              <Form.Control
+                className="form__field"
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={values.password}
+                onChange={(e) => {
+                  handleChange(e);
+                  setErrorPassword('');
+                }}
+                isValid={touched.password && !errors.password && !errorPassword}
+                isInvalid={(touched.password && !!errors.password) || !!errorPassword}
+                // onFocus={() => setDidFocusPassword(true)}
+                // isValid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !errors.password : false}
+                // isInvalid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !!errors.password : false}
+              />
+              <Form.Control.Feedback type="invalid" className="form__field-feedback">
+                {errors.password || errorPassword}
+              </Form.Control.Feedback>
+            </Form.Group>
 
-              value={values.password}
-              onChange={(e) => {
-                handleChange(e);
-                setErrorPassword('');
-              }}
-              isValid={touched.password && !errors.password && !errorPassword}
-              isInvalid={(touched.password && !!errors.password) || !!errorPassword}
-              // onFocus={() => setDidFocusPassword(true)}
-              // isValid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !errors.password : false}
-              // isInvalid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !!errors.password : false}
-            />
-            <Form.Control.Feedback type="invalid"  className="form__field-feedback">
-              {errors.password || errorPassword}
-            </Form.Control.Feedback>
-          </Form.Group>
+            <Form.Group className="form__field-container" controlId="formBasicRepeatPassword">
+              <Form.Label className="form__field-title">Confirm Password</Form.Label>
+              <Form.Control
+                className="form__field"
+                type="password"
+                placeholder="Repeat password"
+                name="repeatPassword"
+                value={values.repeatPassword}
+                onChange={handleChange}
+                isValid={touched.repeatPassword && !errors.repeatPassword}
+                isInvalid={touched.repeatPassword && !!errors.repeatPassword}
+                // onFocus={() => setDidFocusRepeatPassword(true)}
+                // isValid={(!!didFocusRepeatPassword && values.repeatPassword.trim().length > 2 ) ? !errors.repeatPassword : false}
+                // isInvalid={(!!didFocusRepeatPassword && values.repeatPassword.trim().length > 2 ) ? !!errors.repeatPassword : false}
+              />
+              <Form.Control.Feedback type="invalid" className="form__field-feedback">
+                {errors.repeatPassword}
+              </Form.Control.Feedback>
+            </Form.Group>
 
-          <Form.Group className="form__field-container" controlId="formBasicRepeatPassword">
-            <Form.Label className="form__field-title">Confirm Password</Form.Label>
-            <Form.Control
-              className="form__field"
-              type="password"
-              placeholder="Repeat password"
-              name="repeatPassword"
+            <Button
+              className="form__submit button"
+              type="submit"
+              variant="custom"
+              onClick={(e) => e.currentTarget.blur()}
+            >
+              Register
+            </Button>
 
-              value={values.repeatPassword}
-              onChange={handleChange}
-              isValid={touched.repeatPassword && !errors.repeatPassword}
-              isInvalid={touched.repeatPassword && !!errors.repeatPassword}
-              // onFocus={() => setDidFocusRepeatPassword(true)}
-              // isValid={(!!didFocusRepeatPassword && values.repeatPassword.trim().length > 2 ) ? !errors.repeatPassword : false}
-              // isInvalid={(!!didFocusRepeatPassword && values.repeatPassword.trim().length > 2 ) ? !!errors.repeatPassword : false}
-            />
-            <Form.Control.Feedback type="invalid"  className="form__field-feedback">{errors.repeatPassword}</Form.Control.Feedback>
-          </Form.Group>
-
-          <Button className="form__submit button" type="submit" variant="custom" onClick={e => e.currentTarget.blur()}>
-            Submit form
-          </Button>
-
-          <Link to="/login" className="form__link">
-            Have an account?
-          </Link>
-        </Form>
+            <Link to="/login" className="form__link">
+              Have an account?
+            </Link>
+          </Form>
         </div>
       )}
     </Formik>

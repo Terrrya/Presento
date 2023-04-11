@@ -56,58 +56,63 @@ export const LoginPage: React.FC = () => {
       }}
     >
       {({ handleSubmit, handleChange, values, touched, errors }) => (
-        <div className='form-container'>
-        <Form noValidate onSubmit={handleSubmit} className="form"  autoComplete="off">
-          <h3 className="form__title">Login</h3>
+        <div className="form-container">
+          <Form noValidate onSubmit={handleSubmit} className="form" autoComplete="off">
+            <h3 className="form__title">Login</h3>
 
-          <Form.Group className="form__field-container" controlId="formBasicEmail" >
-            <Form.Label className="form__field-title">Email</Form.Label>
-            <Form.Control
-            
-              className="form__field"
-              type="email"
-              placeholder="Enter email"
-              name="email"
-              value={values.email}
-              onChange={(e) => {
-                handleChange(e);
-                setErrorMessage('');
-              }}
-              // isValid={touched.email && !errors.email&& !errorMessage}
-              isInvalid={(touched.email && !!errors.email) || !!errorMessage}
-            />
-            <Form.Control.Feedback type="invalid" className="form__field-feedback">{errors.email}</Form.Control.Feedback>
-          </Form.Group>
+            <Form.Group className="form__field-container" controlId="formBasicEmail">
+              <Form.Label className="form__field-title">Email</Form.Label>
+              <Form.Control
+                className="form__field"
+                type="email"
+                placeholder="Enter email"
+                name="email"
+                value={values.email}
+                onChange={(e) => {
+                  handleChange(e);
+                  setErrorMessage('');
+                }}
+                // isValid={touched.email && !errors.email&& !errorMessage}
+                isInvalid={(touched.email && !!errors.email) || !!errorMessage}
+              />
+              <Form.Control.Feedback type="invalid" className="form__field-feedback">
+                {errors.email}
+              </Form.Control.Feedback>
+            </Form.Group>
 
-          <Form.Group className="form__field-container" controlId="formBasicPassword">
-            <Form.Label className="form__field-title">Password</Form.Label>
-            <Form.Control
-              className="form__field"
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={values.password}
-              onChange={(e) => {
-                handleChange(e);
-                setErrorMessage('');
-              }}
+            <Form.Group className="form__field-container" controlId="formBasicPassword">
+              <Form.Label className="form__field-title">Password</Form.Label>
+              <Form.Control
+                className="form__field"
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={values.password}
+                onChange={(e) => {
+                  handleChange(e);
+                  setErrorMessage('');
+                }}
+                // isValid={touched.password && !errors.password && !errorMessage}
+                isInvalid={(touched.password && !!errors.password) || !!errorMessage}
+              />
+              <Form.Control.Feedback type="invalid" className="form__field-feedback">
+                {errors.password || errorMessage}
+              </Form.Control.Feedback>
+            </Form.Group>
 
-              // isValid={touched.password && !errors.password && !errorMessage}
-              isInvalid={(touched.password && !!errors.password) || !!errorMessage}
-            />
-            <Form.Control.Feedback type="invalid" className="form__field-feedback">
-              {errors.password || errorMessage}
-            </Form.Control.Feedback>
-          </Form.Group>
+            <Button
+              className="form__submit button"
+              type="submit"
+              variant="custom"
+              onClick={(e) => e.currentTarget.blur()}
+            >
+              Login
+            </Button>
 
-          <Button className="form__submit button" type="submit" variant="custom" onClick={e => e.currentTarget.blur()}>
-            Submit form
-          </Button>
-
-          <Link to="/sign-up" className="form__link">
-          Don&apos;t have an account yet?
-          </Link>
-        </Form>
+            <Link to="/sign-up" className="form__link">
+              Don&apos;t have an account yet?
+            </Link>
+          </Form>
         </div>
       )}
     </Formik>

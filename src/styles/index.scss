@@ -47,7 +47,7 @@ body {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background-color: transparent;
-  border: 2px solid $accent-orange;
+  border: 2px solid $light-orange;
   border-radius: 10px;
 }
 
@@ -62,3 +62,4 @@ body {
 
 @import "blocks/main-page.scss";
 @import "blocks/form.scss";
+@import "blocks/fillter.scss";

@@ -81,100 +81,104 @@ export const FilterPage: React.FC = () => {
   };
 
   return (
-    <Form className="form" onSubmit={handleSubmit}>
-      <fieldset>
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label as="legend" column sm={2}>
+    <div className="form-container">
+      <Form className="form form--filter" onSubmit={handleSubmit}>
+        <h3 className="form__title">Choose your options</h3>
+
+        <Form.Group as={Row} className="form__field-container">
+          <Form.Label as="legend" column sm={3} className="form__field-title form__field-title--large">
             Age
           </Form.Label>
-          <Col sm={10}>
+          <Col sm={6} className="filter">
             {agesInitial.map(({ label, id }) => (
-              <Form.Check
-                key={id}
-                type="radio"
-                label={label}
-                name="age"
-                id={id}
-                value={id}
-                checked={age === id}
-                onChange={(e) => setAge(e.target.value)}
-              />
+              <label className="filter__label" key={id}>
+                <input
+                  type="radio"
+                  className="filter__input"
+                  name="age"
+                  id={id}
+                  value={id}
+                  checked={age === id}
+                  onChange={(e) => setAge(e.target.value)}
+                />
+                <div className="filter__design"></div>
+                <div className="filter__text">{label}</div>
+              </label>
             ))}
           </Col>
         </Form.Group>
-      </fieldset>
 
-      <fieldset>
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label as="legend" column sm={2}>
+        <Form.Group as={Row} className="form__field-container">
+          <Form.Label as="legend" column sm={3} className="form__field-title form__field-title--large">
             Gender
           </Form.Label>
-          <Col sm={10}>
+          <Col sm={6} className="filter">
             {gendersInitial.map((sex) => (
-              <Form.Check
-                key={sex}
+              <label className="filter__label" key={sex}>
+              <input
                 type="radio"
-                label={sex}
+                className="filter__input"
                 name="gender"
                 id={sex}
                 value={sex}
                 checked={gender === sex}
                 onChange={(e) => setGender(e.target.value)}
               />
+              <div className="filter__design"></div>
+              <div className="filter__text">{sex}</div>
+            </label>
             ))}
           </Col>
         </Form.Group>
-      </fieldset>
 
-      <fieldset>
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label as="legend" column sm={2}>
+        <Form.Group as={Row} className="form__field-container">
+          <Form.Label as="legend" column sm={3} className="form__field-title form__field-title--large">
             Occasion
           </Form.Label>
-          <Col sm={5}>
+          <Col sm={6} className="filter">
             <Form.Select
               aria-label="Occasion"
+              className='filter__select'
               value={occasion}
-              onChange={(e) => setOccasion(e.target.value)}
+              onChange={(e) => {setOccasion(e.target.value); e.currentTarget.blur()}}
             >
               {occasionsInitial.map((occasion) => (
-                <option value={occasion} key={occasion}>
+                <option value={occasion} key={occasion} className="filter__option">
                   {occasion}
                 </option>
               ))}
             </Form.Select>
           </Col>
         </Form.Group>
-      </fieldset>
 
-      <fieldset>
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label as="legend" column sm={2}>
+        <Form.Group as={Row} className="form__field-container">
+          <Form.Label as="legend" column sm={3} className="form__field-title form__field-title--large">
             Budget
           </Form.Label>
-          <Col sm={10}>
+          <Col sm={6} className="filter">
             {budgetsInitial.map(({ label, id }) => (
-              <Form.Check
-                key={id}
+              <label className="filter__label" key={id}>
+              <input
                 type="checkbox"
-                label={label}
+                className="filter__input"
                 name="budget"
                 id={id}
                 value={id}
                 onChange={(e) => handleChangeCheckbox(e, budgets, setBudgets)}
               />
+              <div className="filter__design filter__design--checkbox"></div>
+              <div className="filter__text">{label}</div>
+            </label>
             ))}
           </Col>
         </Form.Group>
-      </fieldset>
 
-      <fieldset>
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label as="legend" column sm={2}>
+        <Form.Group as={Row} className="form__field-container">
+          <Form.Label as="legend" column sm={3} className="form__field-title form__field-title--large">
             Likes
           </Form.Label>
-          <Col sm={10}>
-            <ToggleButtonGroup type="checkbox" value={likes} className="like-wrapper" ref={group}>
+          <Col sm={8} className="filter">
+            <ToggleButtonGroup type="checkbox" value={likes} className="filter__likes-wrapper" ref={group}>
               {likesInitial.map((like) => (
                 <ToggleButton
                   key={like}
@@ -183,7 +187,7 @@ export const FilterPage: React.FC = () => {
                   name={like}
                   value={like}
                   onChange={(e) => handleChangeCheckbox(e, likes, setLikes)}
-                  className="like-item"
+                  className="filter__like"
                 >
                   {like}
                 </ToggleButton>
@@ -191,11 +195,11 @@ export const FilterPage: React.FC = () => {
             </ToggleButtonGroup>
           </Col>
         </Form.Group>
-      </fieldset>
 
-      <Button type="submit" variant="danger">
-        Go To Result
-      </Button>
-    </Form>
+        <Button className="form__submit button" type="submit" variant="custom">
+          Go To Result
+        </Button>
+      </Form>
+    </div>
   );
 };

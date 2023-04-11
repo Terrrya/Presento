@@ -24,31 +24,30 @@ export const MainPage: React.FC = () => {
       <div className="container">
         <div className="main-page__content">
           <div>
-          <h1 className="main-page__title">
-            Struggling to find the gift for loved ones?
-            <br />
-            <span className="main-page__title--italic">You are in the right place!</span>
-          </h1>
-          <div className="main-page__info">
-            <p className="main-page__description">
-              Presento is a service that helps people to find the perfect gift for their loved ones.
-              It has a variety of options for any age, gender, occasion and even budget.
-            </p>
+            <h1 className="main-page__title">
+              Struggling to find the gift for loved ones?
+              <br />
+              <span className="main-page__title--italic">You are in the right place!</span>
+            </h1>
+            <div className="main-page__info">
+              <p className="main-page__description">
+                Presento is a service that helps people to find the perfect gift for their loved
+                ones. It has a variety of options for any age, gender, occasion and even budget.
+              </p>
 
-            <Link to={token ? 'filter' : 'login'} className=" main-page__button button">
-              <i
-                className={classNames(
-                  'button__icon',
-                  'fa-solid',
-                  { 'fa-right-to-bracket': !token },
-                  { 'fa-gift': !!token }
-                )}
-              ></i>
-              Choose gifts
-            </Link>
+              <Link to={token ? 'filter' : 'login'} className=" main-page__button button">
+                <i
+                  className={classNames(
+                    'button__icon',
+                    'fa-solid',
+                    { 'fa-right-to-bracket': !token },
+                    { 'fa-gift': !!token }
+                  )}
+                ></i>
+                Choose gifts
+              </Link>
+            </div>
           </div>
-          </div>
-
 
           <div className="main-page__slider slider">
             <Carousel className="slider__content">
