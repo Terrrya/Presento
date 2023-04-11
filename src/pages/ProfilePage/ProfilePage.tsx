@@ -4,13 +4,17 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { schemaWithoutPassword } from '../../utils/validationSchemes';
 import { Formik } from 'formik';
-// import { Link } from 'react-router-dom';
 import { UserData } from '../../types/UserData';
 import { checkObjectEqual } from '../../helpers/checkObjectEqual';
+import { Loader } from '../../components/Loader';
+import { useMessage } from '../../App';
+import { SuccessType } from '../../types/SuccessType';
+import { ErrorType } from '../../types/ErrorType';
+import { Notification } from '../../components/Notification';
 
 export const ProfilePage: React.FC = () => {
   const [userData, setUserData] = useState<UserData>();
-
+  const { message, setMessage } = useMessage();
   const getUserData = async () => {
     try {
       const { email, first_name, last_name } = await getUserDataFromServer();
@@ -30,17 +34,17 @@ export const ProfilePage: React.FC = () => {
 
   const updateUserData = async (data: UserData) => {
     if (checkObjectEqual(userData, data)) {
-      console.log('equal');
-
       return;
     }
 
     try {
       const updatedData = await updateDataOnServer(data);
-      console.log('updatedData');
       console.log(updatedData);
+      setMessage(SuccessType.ChangeData);
+      window.location.reload();
     } catch (error) {
       console.log(error);
+      setMessage(ErrorType.ChangeData);
     }
   };
 
@@ -131,11 +135,18 @@ export const ProfilePage: React.FC = () => {
                 Save changes
               </Button>
             </Form>
+            {!!message && <Notification />}
           </div>
         )}
       </Formik>
     );
   } else {
-    return <h3>Wait...</h3>;
+    return (
+      <div className="form-container">
+        <div className="form">
+          <Loader />
+        </div>
+      </div>
+    );
   }
 };
