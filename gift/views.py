@@ -4,16 +4,23 @@ from django.db.models import Q
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets, mixins
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 
 from gift.models import Gift
 from gift.serializers import GiftSerializer
 
 
+class GiftPagination(PageNumberPagination):
+    page_size = 5
+    max_page_size = 100
+
+
 class GiftViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = GiftSerializer
     queryset = Gift.objects.all()
     permission_classes = (IsAuthenticated,)
+    pagination_class = GiftPagination
 
     @staticmethod
     def _params_to_limits(qs):
