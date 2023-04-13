@@ -12,7 +12,7 @@ from gift.serializers import GiftSerializer
 
 
 class GiftPagination(PageNumberPagination):
-    page_size = 5
+    page_size = 4
     max_page_size = 100
 
 
