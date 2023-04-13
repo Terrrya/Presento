@@ -60,5 +60,8 @@ class Gift(models.Model):
         max_length=15, choices=LikesChoices.choices, blank=True
     )
 
+    class Meta:
+        ordering = ["title"]
+
     def __str__(self) -> str:
         return self.title
