@@ -1,5 +1,5 @@
 .catalog {
-  max-width: 1600px;
+  max-width: calc($card-width * $cards-count + $card-gap * ($cards-count + 1) + 90px + $container-padding * 2);
 
   &__title {
     text-align: center;
@@ -7,8 +7,23 @@
     color: $dark-blue;
   }
 
-  &__container{
+  &__flex {
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__arrow {
+    flex: 0 0 40px;
+    margin: 0 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  &__container{
+    flex: 1 1 auto;
     display: grid;
     grid-template-columns: repeat(1, $card-width);
     gap: $card-gap;
@@ -29,7 +44,7 @@
     @include hover(transform, scale(1.05));
 
     &-image {
-      object-fit: cover;
+      object-fit: contain;
       object-position: center;
       width: $card-width;
       height: 40%;
@@ -39,10 +54,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
       height: 48px;
       overflow: hidden;
-
       font-weight: 600;
     }
 

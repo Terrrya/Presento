@@ -1,15 +1,16 @@
 .form-container {
   position: relative;
   padding-bottom: 20px;
+
   &:before {
     content: ' ';
     display: block;
     position: absolute;
     left: 0;
-    top: -56px;
+    top: -$app-padding-top;
     bottom: 0;
     width: 100%;
-    min-height: calc(100vh - 84px - 75px + 56px);
+    min-height: calc(100vh - ($logo-height + 2 * $header-padding) - $footer-height + $app-padding-top);
     opacity: 0.2;
     background-image: url(../../images/image42.svg);
     background-repeat: repeat;

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import { Link } from 'react-router-dom';
 import { Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import { useGifts } from '../../App';
 import { getGiftsFromServer } from '../../api/gifts';
@@ -31,14 +30,12 @@ export const FilterPage: React.FC = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { setGifts } = useGifts();
-
   const navigate = useNavigate();
 
   const getGifts = async (filterParams: URLSearchParams) => {
     try {
       const gifts = await getGiftsFromServer('?' + filterParams);
       setGifts(gifts);
-      navigate('/gifts');
     } catch (error) {
       console.log(error);
     }
@@ -78,6 +75,7 @@ export const FilterPage: React.FC = () => {
     e.preventDefault();
     updateSearchParams({ age, gender, occasion, budgets, likes });
     getGifts(searchParams);
+    navigate('/gifts');
   };
 
   return (

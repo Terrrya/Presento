@@ -46,7 +46,7 @@ const router = createHashRouter([
       },
 
       {
-        path: 'gifts',
+        path: 'gifts/',
         element: <ResultPage />
       }
     ]

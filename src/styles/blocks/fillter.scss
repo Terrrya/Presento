@@ -26,22 +26,20 @@
     }
 
     &:checked ~ .filter__text {
-      color: #666666;
+      color: #666;
     }
   }
 
   &__design {
     position: relative;
-
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: linear-gradient(to right bottom, #ffe607, $accent-orange);
+    background: linear-gradient(to right bottom, $yellow, $accent-orange);
 
     &--checkbox {
       border-radius: 4px;
     }
-
 
     &::before {
       content: '';
@@ -56,11 +54,11 @@
   }
 
   &__text {
-    color: #999999;
     margin-left: 14px;
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 700;
+    color: #999;
   
     transition: $transition-duration;
   }
@@ -69,7 +67,7 @@
     padding-top: 6px;
     min-width: 200px;
     width: 300px;
-    color: #666666;
+    color: #666;
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 700;
@@ -82,7 +80,7 @@
   }
 
   &__option {
-    color: #999999;
+    color: #999;
     margin-left: 14px;
     text-transform: uppercase;
     font-size: 16px;
@@ -103,7 +101,6 @@
     color: $dark-blue;
     box-shadow: 0 1x 4px 0 rgba(0, 0, 0, 0.05);
 
-
     .btn-check + &:hover, .btn-check + &:focus-visible {
       border: transparent;
       background-color: #f0eff3;
@@ -112,9 +109,8 @@
     }
 
     .btn-check + &:active, .btn-check:checked + & {
-      background: linear-gradient(to right bottom, #ffe607, $accent-orange);
+      background: linear-gradient(to right bottom, $yellow, $accent-orange);
       color: $white;
     }
   }
 }
-

@@ -1,29 +1,19 @@
 .app {
   position: relative;
   background: $light-pink;
-  
+  @extend %Anuphan400;
+  scroll-behavior: smooth;
+
   &__content {
     position: relative;
-    min-height: calc(100vh - 84px - 75px);
-    padding-top: 56px;
+    min-height: calc(100vh - 84px - $footer-height);
+    padding-top: $app-padding-top;
     
   }
 
   &__footer {
     position: relative;
-    height: 75px;
+    height: $footer-height;
   }
 }
 
-.gifts__container {
-  padding: 40px 0;
-  display: flex;
-  align-items: center;
-  // justify-content: center;
-  overflow: hidden;
-}
-
-.gifts__big-container {
-  padding: 40px;
-
-}

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const BASE_URL = 'http://16.16.80.60:8000';
-
+const BASE_URL = 'https://16.16.80.60:8000';
+// const BASE_URL = 'https://test-presento.onrender.com'
 type RequestMethod = 'GET' | 'POST' | 'PATCH';
 
 const tokenString = sessionStorage.getItem('token') || '0';
