@@ -35,7 +35,7 @@ export const App: React.FC = () => {
       if (decodedJwt.exp * 1000 <= Date.now()) {
         localStorage.removeItem('tokens');
         navigate('/login');
-        // window.location.reload();
+        window.location.reload();
         setMessage(ErrorType.RefreshExp);
       }
     }
