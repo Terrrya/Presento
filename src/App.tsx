@@ -17,6 +17,13 @@ type ContextTypeMessage = {
   setMessage: React.Dispatch<React.SetStateAction<ErrorType | SuccessType>>;
 };
 export const App: React.FC = () => {
+  const [gifts, setGifts] = useState<GiftPagination>({
+    count: 0,
+    next: '',
+    previous: '',
+    results: []
+  });
+  const [message, setMessage] = useState<ErrorType | SuccessType>(ErrorType.None);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -28,18 +35,12 @@ export const App: React.FC = () => {
       if (decodedJwt.exp * 1000 <= Date.now()) {
         localStorage.removeItem('tokens');
         navigate('/login');
-        window.location.reload();
+        // window.location.reload();
+        setMessage(ErrorType.RefreshExp);
       }
     }
   }, [location]);
 
-  const [gifts, setGifts] = useState<GiftPagination>({
-    count: 0,
-    next: '',
-    previous: '',
-    results: []
-  });
-  const [message, setMessage] = useState<ErrorType | SuccessType>(ErrorType.None);
   return (
     <div className="app">
       <Header />

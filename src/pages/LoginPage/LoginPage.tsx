@@ -7,6 +7,8 @@ import { loginUserOnServer } from '../../api/user';
 import { Login } from '../../types/Login';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../utils/AuthContext';
+import { Notification } from '../../components/Notification';
+import { useMessage } from '../../App';
 
 const schema = yup.object().shape({
   email: yup
@@ -19,7 +21,7 @@ const schema = yup.object().shape({
 export const LoginPage: React.FC = () => {
   const { login } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState('');
-
+  const { message } = useMessage();
   const navigate = useNavigate();
 
   const createToken = async (loginData: Login) => {
@@ -107,6 +109,7 @@ export const LoginPage: React.FC = () => {
               Don&apos;t have an account yet?
             </Link>
           </Form>
+          {!!message && <Notification />}
         </div>
       )}
     </Formik>

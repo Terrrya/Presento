@@ -11,7 +11,7 @@ export const Notification: React.FC = () => {
   useEffect(() => {
     setTimeout(() => {
       setMessage(ErrorType.None);
-    }, 3000);
+    }, 5000);
   }, []);
 
   return (
