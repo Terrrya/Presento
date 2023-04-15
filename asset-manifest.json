@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Presento/static/css/main.3759a771.css",
-    "main.js": "/Presento/static/js/main.e54048eb.js",
+    "main.js": "/Presento/static/js/main.7718a5cb.js",
     "static/media/fa-solid-900.ttf": "/Presento/static/media/fa-solid-900.2877d54f94f30c5d563c.ttf",
     "static/media/background.svg": "/Presento/static/media/background.19433018b82029efba6f.svg",
     "static/media/fa-brands-400.ttf": "/Presento/static/media/fa-brands-400.13e40630e5866f777de8.ttf",
@@ -18,10 +18,10 @@
     "index.html": "/Presento/index.html",
     "static/media/check.svg": "/Presento/static/media/check.3b79950652b104048172.svg",
     "main.3759a771.css.map": "/Presento/static/css/main.3759a771.css.map",
-    "main.e54048eb.js.map": "/Presento/static/js/main.e54048eb.js.map"
+    "main.7718a5cb.js.map": "/Presento/static/js/main.7718a5cb.js.map"
   },
   "entrypoints": [
     "static/css/main.3759a771.css",
-    "static/js/main.e54048eb.js"
+    "static/js/main.7718a5cb.js"
   ]
 }
