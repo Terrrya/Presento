@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { loginUserOnServer } from '../../api/user';
 import { Login } from '../../types/Login';
-// import { Token } from '../../types/Token';
 import { Link, useNavigate } from 'react-router-dom';
-import useToken from '../../utils/useToken';
+import { AuthContext } from '../../utils/AuthContext';
 
 const schema = yup.object().shape({
   email: yup
@@ -18,27 +17,22 @@ const schema = yup.object().shape({
 });
 
 export const LoginPage: React.FC = () => {
-  const { setToken } = useToken();
+  const { login } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
 
-  const createToken = (loginData: Login) => {
-    const loginUser = async () => {
-      try {
-        const token = await loginUserOnServer(loginData);
-        console.log(token);
-        setToken(token);
-        navigate('/');
-        window.location.reload();
-      } catch (error: any) {
-        const x = await error;
-        setErrorMessage(Object.values<string>(x)[0]);
-        // console.log(x);
-      }
-    };
-
-    loginUser();
+  const createToken = async (loginData: Login) => {
+    try {
+      const { data } = await loginUserOnServer(loginData);
+      console.log(data);
+      login(data);
+      navigate('/');
+      window.location.reload();
+    } catch (error: any) {
+      const objWithMessage = await error;
+      setErrorMessage(Object.values<string>(objWithMessage)[0]);
+    }
   };
 
   return (

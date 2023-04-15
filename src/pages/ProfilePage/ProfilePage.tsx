@@ -17,11 +17,11 @@ export const ProfilePage: React.FC = () => {
   const { message, setMessage } = useMessage();
   const getUserData = async () => {
     try {
-      const { email, first_name, last_name } = await getUserDataFromServer();
+      const { data } = await getUserDataFromServer();
       setUserData({
-        email,
-        first_name,
-        last_name
+        email: data.email,
+        first_name: data.first_name,
+        last_name: data.last_name
       });
     } catch (error) {
       console.log(error);
@@ -38,8 +38,7 @@ export const ProfilePage: React.FC = () => {
     }
 
     try {
-      const updatedData = await updateDataOnServer(data);
-      console.log(updatedData);
+      await updateDataOnServer(data);
       setMessage(SuccessType.ChangeData);
       window.location.reload();
     } catch (error) {

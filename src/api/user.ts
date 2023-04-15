@@ -3,20 +3,24 @@ import { UserResponse } from '../types/UserResponse';
 import { Token } from '../types/Token';
 import { User } from '../types/User';
 import { UserData } from '../types/UserData';
-import { client } from '../utils/fetchClient';
-
-export const createUserOnServer = (data: User) => {
-  return client.post<User>('/api/user/register/', data);
-};
+import { axiosApi } from '../utils/axiosApi';
 
 export const loginUserOnServer = (data: Login) => {
-  return client.post<Token>('/api/user/token/', data);
+  return axiosApi.post<Token>('user/token/', data);
+};
+
+export const refreshTokenOnServer = (refreshToken: Omit<Token, 'access'>) => {
+  return axiosApi.post<Token>('user/token/refresh/', refreshToken);
+};
+
+export const createUserOnServer = (data: User) => {
+  return axiosApi.post<User>('user/register/', data);
 };
 
 export const getUserDataFromServer = () => {
-  return client.get<UserResponse>(`/api/user/me/`);
+  return axiosApi.get<UserResponse>(`user/me/`);
 };
 
 export const updateDataOnServer = (data: UserData) => {
-  return client.patch<any>('/api/user/me/', data);
+  return axiosApi.patch<UserResponse>('user/me/', data);
 };

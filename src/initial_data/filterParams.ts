@@ -17,9 +17,9 @@ export const occasionsInitial = [
 ];
 
 export const budgetsInitial = [
-  { label: '$', id: '0-99' },
-  { label: '$$', id: '100-500' },
-  { label: '$$$', id: '500-5000' }
+  { label: '$', id: '0-199' },
+  { label: '$$', id: '200-999' },
+  { label: '$$$', id: '1000-70000' }
 ];
 
 export const likesInitial = ['Sport', 'Beauty', 'Cars', 'Fashion', 'IT', 'Music'];

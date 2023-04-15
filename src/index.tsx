@@ -13,6 +13,7 @@ import { MainPage } from './pages/MainPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { FilterPage } from './pages/FilterPage';
 import { ResultPage } from './pages/ResultPage';
+import { AuthContextProvider } from './utils/AuthContext';
 
 const router = createHashRouter([
   {
@@ -54,7 +55,9 @@ const router = createHashRouter([
 ]);
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>
+  <AuthContextProvider>
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>
+  </AuthContextProvider>
 );

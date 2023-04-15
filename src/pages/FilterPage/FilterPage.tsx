@@ -34,8 +34,8 @@ export const FilterPage: React.FC = () => {
 
   const getGifts = async (filterParams: URLSearchParams) => {
     try {
-      const gifts = await getGiftsFromServer('?' + filterParams);
-      setGifts(gifts);
+      const { data } = await getGiftsFromServer(`${filterParams}`);
+      setGifts(data);
     } catch (error) {
       console.log(error);
     }

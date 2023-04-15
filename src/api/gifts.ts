@@ -1,6 +1,6 @@
 import { GiftPagination } from '../types/GiftPagination';
-import { client } from '../utils/fetchClient';
+import { axiosApi } from '../utils/axiosApi';
 
 export const getGiftsFromServer = (searchParams: string) => {
-  return client.get<GiftPagination>(`/api/gifts/${searchParams}`);
+  return axiosApi.get<GiftPagination>(`gifts/?${searchParams}`);
 };

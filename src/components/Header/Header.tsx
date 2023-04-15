@@ -1,31 +1,30 @@
-// import classNames from 'classnames';
-import newLogo from '../../images/newLogo.png';
-import React, { useEffect, useState } from 'react';
+import logo from '../../images/logo.png';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import useToken from '../../utils/useToken';
 import { getUserDataFromServer } from '../../api/user';
+import { AuthContext } from '../../utils/AuthContext';
 
 export const Header: React.FC = () => {
-  const { token } = useToken();
+  const { user } = useContext(AuthContext);
   const [userName, setUserName] = useState('');
   const navigate = useNavigate();
   const getUserData = async () => {
     try {
-      const { first_name } = await getUserDataFromServer();
-      setUserName(first_name);
+      const { data } = await getUserDataFromServer();
+      setUserName(data.first_name);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    if (token) {
+    if (user) {
       getUserData();
     }
   }, []);
 
   const logOut = () => {
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('tokens');
     navigate('/');
     window.location.reload();
   };
@@ -35,14 +34,14 @@ export const Header: React.FC = () => {
       <div className="container container--hf">
         <div className="header__content">
           <Link to="/" className="header__logo-container">
-            <img src={newLogo} alt="Presento" className="header__logo" />
+            <img src={logo} alt="Presento" className="header__logo" />
           </Link>
 
           <div className="header__btn-container">
             <p className="header__greeting" style={{ color: 'black' }}>
-              {`Hello, ${token ? userName : 'Stranger'}!`}
+              {`Hello, ${user ? userName : 'Stranger'}!`}
             </p>
-            {token ? (
+            {user ? (
               <>
                 <Link to="/profile" className="button header__button">
                   Profile
