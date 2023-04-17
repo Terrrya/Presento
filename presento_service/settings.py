@@ -36,6 +36,12 @@ ALLOWED_HOSTS = [
     "test-presento.onrender.com",
     "0.0.0.0",
     "16.16.80.60",
+    "localhost",
+    "16.16.104.247",
+    "app",
+    "front",
+    "presento_api",
+    "presento_front",
 ]
 
 # Application definition
@@ -105,9 +111,9 @@ DATABASES = {
 }
 # #
 # # dj-database-url
-if not DEBUG:
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES["default"].update(db_from_env)
+# if not DEBUG:
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES["default"].update(db_from_env)
 
 
 # Password validation
@@ -181,11 +187,24 @@ REST_FRAMEWORK = {
 }
 
 # CORS_ORIGIN_WHITELIST = ("https://test-presento.onrender.com", "http://localhost:3000", "https://localhost:3000", "http://127.0.0.1:3000", "https://127.0.0.1:3000")
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
+    "http://0.0.0.0:8000",
+    "http://app:8000",
+    "http://172.26.0.1:8000",
+    "http://localhost",
+    "http://presento_api",
+    "http://presento_front",
+    "http://presento_api:8000",
+    "http://presento_front:8000",
+    "http://app:8000",
+]
+# CORS_ALLOW_ALL_ORIGINS = True
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=2),
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,
 }
 

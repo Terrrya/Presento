@@ -15,10 +15,28 @@ services:
             - .env
         restart: always
 
+    front:
+        build:
+            context: ./frontend
+        expose:
+            - 3000
+        volumes:
+            - /app/node_modules
+            - ./frontend:/app
+        command: >
+            sh -c "npm start"
+        depends_on:
+            -   app
+        env_file:
+            - .env
+        restart: always
+
+
     nginx:
         build: ./nginx
         ports:
             - "80:80"
-            - "443:80"
         depends_on:
             - app
+            - front
+        restart: always
