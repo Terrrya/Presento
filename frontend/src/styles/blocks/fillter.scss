@@ -1,0 +1,116 @@
+.filter {
+  &__label {
+    display: flex;
+    align-items: center;
+    border-radius: 100px;
+    padding: 14px 8px;
+    cursor: pointer;
+    transition: $transition-duration;
+
+    &:hover {
+      background: #cccccc24;
+    }
+  }
+
+  &__input {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    z-index: -1;
+
+    &:checked + .filter__design::before {
+      transform: scale(0);
+    }
+
+    &:checked ~ .filter__text {
+      color: #666;
+    }
+  }
+
+  &__design {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(to right bottom, $yellow, $accent-orange);
+
+    &--checkbox {
+      border-radius: 4px;
+    }
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: inherit;
+      height: inherit;
+      border-radius: inherit;
+      background: #e6e6e6;
+      transform: scale(1.1);
+      transition: $transition-duration;
+    }
+  }
+
+  &__text {
+    margin-left: 14px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    color: #999;
+  
+    transition: $transition-duration;
+  }
+
+  &__select {
+    padding-top: 6px;
+    min-width: 200px;
+    width: 300px;
+    color: #666;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+  
+    &:focus {
+      border: 1px solid #ced4da;
+      outline: none;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+  }
+
+  &__option {
+    color: #999;
+    margin-left: 14px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__likes-wrapper {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  &__like {
+    min-width: 100px;
+    border-radius: 20px;
+    border: transparent;
+    background-color: #f0eff3;
+    color: $dark-blue;
+    box-shadow: 0 1x 4px 0 rgba(0, 0, 0, 0.05);
+
+    .btn-check + &:hover, .btn-check + &:focus-visible {
+      border: transparent;
+      background-color: #f0eff3;
+      color: $dark-blue;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-check + &:active, .btn-check:checked + & {
+      background: linear-gradient(to right bottom, $yellow, $accent-orange);
+      color: $white;
+    }
+  }
+}

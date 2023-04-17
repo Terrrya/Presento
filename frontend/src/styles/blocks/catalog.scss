@@ -1,0 +1,79 @@
+.catalog {
+  max-width: calc($card-width * $cards-count + $card-gap * ($cards-count + 1) + 90px + $container-padding * 2);
+
+  &__title {
+    text-align: center;
+    font-size: 36px;
+    color: $dark-blue;
+  }
+
+  &__flex {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__arrow {
+    flex: 0 0 40px;
+    margin: 0 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  &__container{
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: repeat(1, $card-width);
+    gap: $card-gap;
+    place-content: center;
+
+    @include onTablet {
+      grid-template-columns: repeat(auto-fit, $card-width);
+    }
+  }
+
+  &__card {
+    width: $card-width;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+    @include hover(transform, scale(1.05));
+
+    &-image {
+      object-fit: contain;
+      object-position: center;
+      width: $card-width;
+      height: 40%;
+    }
+
+    &-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      overflow: hidden;
+      font-weight: 600;
+    }
+
+    &-price {
+      font-weight: 600;
+      color: $accent-orange;
+    }
+
+    &-description {
+      padding-right: 12px;
+      text-align: justify;
+      height: 140px;
+      overflow: scroll;
+    }
+  }
+
+  &__button {
+    margin: 30px auto 20px;
+    width: 200px
+  }
+}

@@ -1,0 +1,71 @@
+.form {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 60px;
+  max-height: 650px;
+  max-width: 600px;
+  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  background: $light-pink;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  &--filter {
+    max-width: 700px;
+  }
+
+  &__field-container{
+    width: 100%;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 36px;
+    color: $dark-blue;
+  }
+
+  &__field-title {
+    font-size: 18px;
+    color: $dark-blue;
+
+    &--large {
+      padding-top: 4px;
+      font-size: 22px;
+    }
+  }
+
+  &__field {
+    &:focus {
+      border: 1px solid #ced4da;
+      outline: none;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    &.is-valid {
+      border-color: $dark-blue;
+      background-image: url(../../images/check.svg);
+    }
+
+    &.is-valid:focus {
+      border-color: $dark-blue;
+      box-shadow: 0 0 0 0.25rem rgba(25, 27, 135, 0.25);
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 50px $light-pink inset;
+    }
+  }
+
+  &__submit {
+    margin: 20px 0 0;
+    width: 100%;
+  }
+}

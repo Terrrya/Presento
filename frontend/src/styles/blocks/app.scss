@@ -1,0 +1,19 @@
+.app {
+  position: relative;
+  background: $light-pink;
+  @extend %Anuphan400;
+  scroll-behavior: smooth;
+
+  &__content {
+    position: relative;
+    min-height: calc(100vh - 84px - $footer-height);
+    padding-top: $app-padding-top;
+    
+  }
+
+  &__footer {
+    position: relative;
+    height: $footer-height;
+  }
+}
+

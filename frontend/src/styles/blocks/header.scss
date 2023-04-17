@@ -1,0 +1,30 @@
+.header {
+  background: $light-pink;
+  padding: $header-padding 0;
+  box-shadow: 0 -1px 0 rgba(67, 68, 78, 0.1) inset;
+
+  &__content {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+  }
+
+  &__btn-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__button {
+    width: 180px;
+  }
+
+  &__greeting {
+    margin-right: 30px;
+    font-size: 28px;
+  }
+
+  &__logo {
+    height: $logo-height;
+  }
+}
