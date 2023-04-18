@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, createContext } from 'react';
 import { Token } from '../types/Token';
 import jwt_decode from 'jwt-decode';

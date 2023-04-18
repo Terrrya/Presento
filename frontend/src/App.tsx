@@ -30,6 +30,7 @@ export const App: React.FC = () => {
   useEffect(() => {
     if (localStorage.getItem('tokens')) {
       const tokens = JSON.parse(localStorage.getItem('tokens') || '{}');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const decodedJwt: any = jwt_decode(tokens.refresh);
 
       if (decodedJwt.exp * 1000 <= Date.now()) {

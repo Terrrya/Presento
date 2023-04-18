@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Col, Row, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
-import { useGifts } from '../../App';
+import { useGifts, useMessage } from '../../App';
 import { getGiftsFromServer } from '../../api/gifts';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
@@ -12,6 +12,8 @@ import {
   budgetsInitial,
   likesInitial
 } from '../../initial_data/filterParams';
+import { ErrorType } from '../../types/ErrorType';
+import { Notification } from '../../components/Notification';
 
 export const FilterPage: React.FC = () => {
   const group = useRef<HTMLAnchorElement | null>(null);
@@ -29,6 +31,7 @@ export const FilterPage: React.FC = () => {
   const [likes, setLikes] = useState<string[]>([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const { message, setMessage } = useMessage();
   const { setGifts } = useGifts();
   const navigate = useNavigate();
 
@@ -36,8 +39,9 @@ export const FilterPage: React.FC = () => {
     try {
       const { data } = await getGiftsFromServer(`${filterParams}`);
       setGifts(data);
+      navigate('/gifts');
     } catch (error) {
-      console.log(error);
+      setMessage(ErrorType.LoadGift);
     }
   };
 
@@ -75,7 +79,6 @@ export const FilterPage: React.FC = () => {
     e.preventDefault();
     updateSearchParams({ age, gender, occasion, budgets, likes });
     getGifts(searchParams);
-    navigate('/gifts');
   };
 
   return (
@@ -231,6 +234,7 @@ export const FilterPage: React.FC = () => {
           Go To Result
         </Button>
       </Form>
+      {!!message && <Notification />}
     </div>
   );
 };

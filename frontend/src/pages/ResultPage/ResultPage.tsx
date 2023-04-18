@@ -2,11 +2,14 @@ import React from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getGiftsFromServer } from '../../api/gifts';
-import { useGifts } from '../../App';
+import { useGifts, useMessage } from '../../App';
 import { Loader } from '../../components/Loader';
+import { Notification } from '../../components/Notification';
+import { ErrorType } from '../../types/ErrorType';
 
 export const ResultPage: React.FC = () => {
   const { gifts, setGifts } = useGifts();
+  const { message, setMessage } = useMessage();
   const { count, next, previous, results } = gifts;
   const emptyGifts = {
     count: 0,
@@ -20,7 +23,7 @@ export const ResultPage: React.FC = () => {
       const { data } = await getGiftsFromServer(str.split('?')[1]);
       setGifts(data);
     } catch (error) {
-      console.log(error);
+      setMessage(ErrorType.LoadGift);
     }
   };
   return (
@@ -80,6 +83,8 @@ export const ResultPage: React.FC = () => {
           Try again
         </Link>
       </div>
+
+      {!!message && <Notification />}
     </div>
   );
 };

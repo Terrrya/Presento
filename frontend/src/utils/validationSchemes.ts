@@ -1,8 +1,14 @@
 import * as yup from 'yup';
 
 export const validationSchema = yup.object().shape({
-  firstName: yup.string().required('This field may not be blank.').max(75, 'Ensure this field has no more than 75 characters.'),
-  lastName: yup.string().required('This field may not be blank.').max(75, 'Ensure this field has no more than 75 characters.'),
+  firstName: yup
+    .string()
+    .required('This field may not be blank.')
+    .max(75, 'Ensure this field has no more than 75 characters.'),
+  lastName: yup
+    .string()
+    .required('This field may not be blank.')
+    .max(75, 'Ensure this field has no more than 75 characters.'),
   email: yup
     .string()
     .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, 'Enter a valid email address.')

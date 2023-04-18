@@ -6,29 +6,39 @@ import { Formik } from 'formik';
 import { User } from '../../types/User';
 import { Link, useNavigate } from 'react-router-dom';
 import { validationSchema } from '../../utils/validationSchemes';
+import { useMessage } from '../../App';
+import { ErrorType } from '../../types/ErrorType';
+import { Notification } from '../../components/Notification';
 
 export const SignUpPage: React.FC = () => {
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
+  const { message, setMessage } = useMessage();
   const navigate = useNavigate();
 
   const createUser = async (user: User) => {
     try {
       await createUserOnServer(user);
       navigate('/login');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const axiosObject = await error;
-      const errorObject = axiosObject.response.data;
-      switch (Object.keys(errorObject)[0]) {
-        case 'email':
-          setErrorEmail(Object.values<string>(errorObject)[0]);
-          0;
-          break;
-        case 'password':
-          setErrorPassword(Object.values<string>(errorObject)[0]);
-          break;
-        default:
-          break;
+
+      if (axiosObject.response) {
+        const errorObject = axiosObject.response.data;
+        switch (Object.keys(errorObject)[0]) {
+          case 'email':
+            setErrorEmail(Object.values<string>(errorObject)[0]);
+            0;
+            break;
+          case 'password':
+            setErrorPassword(Object.values<string>(errorObject)[0]);
+            break;
+          default:
+            break;
+        }
+      } else {
+        setMessage(ErrorType.Registration);
       }
     }
   };
@@ -160,6 +170,7 @@ export const SignUpPage: React.FC = () => {
               Have an account?
             </Link>
           </Form>
+          {!!message && <Notification />}
         </div>
       )}
     </Formik>

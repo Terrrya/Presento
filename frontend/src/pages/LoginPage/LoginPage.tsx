@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../utils/AuthContext';
 import { Notification } from '../../components/Notification';
 import { useMessage } from '../../App';
+import { ErrorType } from '../../types/ErrorType';
 
 const schema = yup.object().shape({
   email: yup
@@ -21,7 +22,7 @@ const schema = yup.object().shape({
 export const LoginPage: React.FC = () => {
   const { login } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState('');
-  const { message } = useMessage();
+  const { message, setMessage } = useMessage();
   const navigate = useNavigate();
 
   const createToken = async (loginData: Login) => {
@@ -30,10 +31,16 @@ export const LoginPage: React.FC = () => {
       login(data);
       navigate('/');
       window.location.reload();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const axiosObject = await error;
-      const errorObject = axiosObject.response.data;
-      setErrorMessage(Object.values<string>(errorObject)[0]);
+
+      if (axiosObject.response) {
+        const errorObject = axiosObject.response.data;
+        setErrorMessage(Object.values<string>(errorObject)[0]);
+      } else {
+        setMessage(ErrorType.Login);
+      }
     }
   };
 

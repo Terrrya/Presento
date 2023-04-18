@@ -7,7 +7,9 @@ import { SuccessType } from '../../types/SuccessType';
 
 export const Notification: React.FC = () => {
   const { message, setMessage } = useMessage();
-  const isError = typeof message === typeof ErrorType;
+  const values = Object.values(ErrorType);
+  const isError = values.includes(message as unknown as ErrorType);
+
   useEffect(() => {
     setTimeout(() => {
       setMessage(ErrorType.None);
