@@ -3,23 +3,31 @@ services:
     app:
         build:
             context: .
-        expose:
-            - 8000
+        ports:
+            - "8000:8000"
         volumes:
             - ./:/app
         command: >
-            sh -c "python manage.py collectstatic --no-input &&
+            sh -c "python manage.py wait_for_db &&
                    python manage.py migrate &&
-                   gunicorn presento_service.wsgi:application --bind 0.0.0.0:8000"
+                   nohup python manage.py runserver 0.0.0.0:8000"
         env_file:
             - .env
-        restart: always
+        depends_on:
+            - db
+
+    db:
+        image: postgres:15-alpine
+        ports:
+            - "5432:5432"
+        env_file:
+            - .env
 
     front:
         build:
             context: ./frontend
-        expose:
-            - 3000
+        ports:
+            - "3000:3000"
         volumes:
             - /app/node_modules
             - ./frontend:/app
