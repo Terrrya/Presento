@@ -17,7 +17,7 @@ export const ResultPage: React.FC = () => {
 
   const getGifts = async (str: string) => {
     try {
-      const { data } = await getGiftsFromServer(str.slice(35));
+      const { data } = await getGiftsFromServer(str.split('?')[1]);
       setGifts(data);
     } catch (error) {
       console.log(error);

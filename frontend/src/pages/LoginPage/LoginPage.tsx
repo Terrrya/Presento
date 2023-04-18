@@ -27,13 +27,13 @@ export const LoginPage: React.FC = () => {
   const createToken = async (loginData: Login) => {
     try {
       const { data } = await loginUserOnServer(loginData);
-      console.log(data);
       login(data);
       navigate('/');
       window.location.reload();
     } catch (error: any) {
-      const objWithMessage = await error;
-      setErrorMessage(Object.values<string>(objWithMessage)[0]);
+      const axiosObject = await error;
+      const errorObject = axiosObject.response.data;
+      setErrorMessage(Object.values<string>(errorObject)[0]);
     }
   };
 
@@ -68,7 +68,6 @@ export const LoginPage: React.FC = () => {
                   handleChange(e);
                   setErrorMessage('');
                 }}
-                // isValid={touched.email && !errors.email&& !errorMessage}
                 isInvalid={(touched.email && !!errors.email) || !!errorMessage}
               />
               <Form.Control.Feedback type="invalid" className="form__field-feedback">
@@ -88,7 +87,6 @@ export const LoginPage: React.FC = () => {
                   handleChange(e);
                   setErrorMessage('');
                 }}
-                // isValid={touched.password && !errors.password && !errorMessage}
                 isInvalid={(touched.password && !!errors.password) || !!errorMessage}
               />
               <Form.Control.Feedback type="invalid" className="form__field-feedback">
