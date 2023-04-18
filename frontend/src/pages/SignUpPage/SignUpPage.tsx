@@ -6,40 +6,40 @@ import { Formik } from 'formik';
 import { User } from '../../types/User';
 import { Link, useNavigate } from 'react-router-dom';
 import { validationSchema } from '../../utils/validationSchemes';
+import { useMessage } from '../../App';
+import { ErrorType } from '../../types/ErrorType';
+import { Notification } from '../../components/Notification';
 
 export const SignUpPage: React.FC = () => {
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPassword, setErrorPassword] = useState('');
-  // const [didFocusFirstName, setDidFocusFirstName] = React.useState(false);
-  // const [didFocusLastName, setDidFocusLastName] = React.useState(false);
-  // const [didFocusEmail, setDidFocusEmail] = React.useState(false);
-  // const [didFocusPassword, setDidFocusPassword] = React.useState(false);
-  // const [didFocusRepeatPassword, setDidFocusRepeatPassword] = React.useState(false);
-
+  const { message, setMessage } = useMessage();
   const navigate = useNavigate();
 
   const createUser = async (user: User) => {
     try {
-      const createdUser = await createUserOnServer(user);
-      console.log('createdUser');
-      console.log(createdUser);
-
+      await createUserOnServer(user);
       navigate('/login');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      const errorObject = await error;
-      switch (Object.keys(errorObject)[0]) {
-        case 'email':
-          setErrorEmail(Object.values<string>(errorObject)[0]);
-          0;
-          break;
-        case 'password':
-          setErrorPassword(Object.values<string>(errorObject)[0]);
-          break;
-        default:
-          break;
-      }
+      const axiosObject = await error;
 
-      // console.log(errorObject);
+      if (axiosObject.response) {
+        const errorObject = axiosObject.response.data;
+        switch (Object.keys(errorObject)[0]) {
+          case 'email':
+            setErrorEmail(Object.values<string>(errorObject)[0]);
+            0;
+            break;
+          case 'password':
+            setErrorPassword(Object.values<string>(errorObject)[0]);
+            break;
+          default:
+            break;
+        }
+      } else {
+        setMessage(ErrorType.Registration);
+      }
     }
   };
   return (
@@ -77,9 +77,6 @@ export const SignUpPage: React.FC = () => {
                 onChange={handleChange}
                 isValid={touched.firstName && !errors.firstName}
                 isInvalid={touched.firstName && !!errors.firstName}
-                // onFocus={() => setDidFocusFirstName(true)}
-                // isValid={(didFocusFirstName && values.firstName.trim()) ? !errors.firstName : false}
-                // isInvalid={(didFocusFirstName && !touched.firstName) ? !!errors.firstName : false}
               />
               <Form.Control.Feedback type="invalid" className="form__field-feedback">
                 {errors.firstName}
@@ -97,9 +94,6 @@ export const SignUpPage: React.FC = () => {
                 onChange={handleChange}
                 isValid={touched.lastName && !errors.lastName}
                 isInvalid={touched.lastName && !!errors.lastName}
-                // onFocus={() => setDidFocusLastName(true)}
-                // isValid={(didFocusLastName && values.lastName.trim()) ? !errors.lastName : false}
-                // isInvalid={(didFocusLastName && !touched.lastName) ? !!errors.lastName : false}
               />
               <Form.Control.Feedback type="invalid" className="form__field-feedback">
                 {errors.lastName}
@@ -120,14 +114,10 @@ export const SignUpPage: React.FC = () => {
                 }}
                 isValid={touched.email && !errors.email && !errorEmail}
                 isInvalid={(touched.email && !!errors.email) || !!errorEmail}
-                // onFocus={() => setDidFocusEmail(true)}
-                // isValid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !errors.email : false}
-                // isInvalid={(!!didFocusEmail && values.email.trim().length > 2 ) ? !!errors.email : false}
               />
               <Form.Control.Feedback type="invalid" className="form__field-feedback">
                 {errors.email || errorEmail}
               </Form.Control.Feedback>
-              {/* <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback> */}
             </Form.Group>
 
             <Form.Group className="form__field-container" controlId="formBasicPassword">
@@ -144,9 +134,6 @@ export const SignUpPage: React.FC = () => {
                 }}
                 isValid={touched.password && !errors.password && !errorPassword}
                 isInvalid={(touched.password && !!errors.password) || !!errorPassword}
-                // onFocus={() => setDidFocusPassword(true)}
-                // isValid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !errors.password : false}
-                // isInvalid={(!!didFocusPassword && values.password.trim().length > 2 ) ? !!errors.password : false}
               />
               <Form.Control.Feedback type="invalid" className="form__field-feedback">
                 {errors.password || errorPassword}
@@ -164,9 +151,6 @@ export const SignUpPage: React.FC = () => {
                 onChange={handleChange}
                 isValid={touched.repeatPassword && !errors.repeatPassword}
                 isInvalid={touched.repeatPassword && !!errors.repeatPassword}
-                // onFocus={() => setDidFocusRepeatPassword(true)}
-                // isValid={(!!didFocusRepeatPassword && values.repeatPassword.trim().length > 2 ) ? !errors.repeatPassword : false}
-                // isInvalid={(!!didFocusRepeatPassword && values.repeatPassword.trim().length > 2 ) ? !!errors.repeatPassword : false}
               />
               <Form.Control.Feedback type="invalid" className="form__field-feedback">
                 {errors.repeatPassword}
@@ -186,6 +170,7 @@ export const SignUpPage: React.FC = () => {
               Have an account?
             </Link>
           </Form>
+          {!!message && <Notification />}
         </div>
       )}
     </Formik>

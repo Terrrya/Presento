@@ -24,7 +24,7 @@ export const ProfilePage: React.FC = () => {
         last_name: data.last_name
       });
     } catch (error) {
-      console.log(error);
+      setMessage(ErrorType.LoadData);
     }
   };
 
@@ -42,7 +42,6 @@ export const ProfilePage: React.FC = () => {
       setMessage(SuccessType.ChangeData);
       window.location.reload();
     } catch (error) {
-      console.log(error);
       setMessage(ErrorType.ChangeData);
     }
   };
@@ -52,11 +51,6 @@ export const ProfilePage: React.FC = () => {
       <Formik
         validationSchema={schemaWithoutPassword}
         onSubmit={({ email, firstName, lastName }) => {
-          console.log({
-            email: email,
-            first_name: firstName,
-            last_name: lastName
-          });
           updateUserData({
             email: email,
             first_name: firstName,

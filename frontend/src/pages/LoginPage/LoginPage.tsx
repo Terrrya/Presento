@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../utils/AuthContext';
 import { Notification } from '../../components/Notification';
 import { useMessage } from '../../App';
+import { ErrorType } from '../../types/ErrorType';
 
 const schema = yup.object().shape({
   email: yup
@@ -21,19 +22,25 @@ const schema = yup.object().shape({
 export const LoginPage: React.FC = () => {
   const { login } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState('');
-  const { message } = useMessage();
+  const { message, setMessage } = useMessage();
   const navigate = useNavigate();
 
   const createToken = async (loginData: Login) => {
     try {
       const { data } = await loginUserOnServer(loginData);
-      console.log(data);
       login(data);
       navigate('/');
       window.location.reload();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      const objWithMessage = await error;
-      setErrorMessage(Object.values<string>(objWithMessage)[0]);
+      const axiosObject = await error;
+
+      if (axiosObject.response) {
+        const errorObject = axiosObject.response.data;
+        setErrorMessage(Object.values<string>(errorObject)[0]);
+      } else {
+        setMessage(ErrorType.Login);
+      }
     }
   };
 
@@ -68,7 +75,6 @@ export const LoginPage: React.FC = () => {
                   handleChange(e);
                   setErrorMessage('');
                 }}
-                // isValid={touched.email && !errors.email&& !errorMessage}
                 isInvalid={(touched.email && !!errors.email) || !!errorMessage}
               />
               <Form.Control.Feedback type="invalid" className="form__field-feedback">
@@ -88,7 +94,6 @@ export const LoginPage: React.FC = () => {
                   handleChange(e);
                   setErrorMessage('');
                 }}
-                // isValid={touched.password && !errors.password && !errorMessage}
                 isInvalid={(touched.password && !!errors.password) || !!errorMessage}
               />
               <Form.Control.Feedback type="invalid" className="form__field-feedback">

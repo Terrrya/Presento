@@ -1,6 +1,4 @@
-// import classNames from 'classnames';
 import React from 'react';
-// import icon from '../..//images/icon.png';
 import footerLogo from '../../images/footerLogo.png';
 
 export const Footer: React.FC = () => {

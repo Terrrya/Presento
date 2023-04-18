@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
       const { data } = await getUserDataFromServer();
       setUserName(data.first_name);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

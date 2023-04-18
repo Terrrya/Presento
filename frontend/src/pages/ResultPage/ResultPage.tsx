@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { getGiftsFromServer } from '../../api/gifts';
-import { useGifts } from '../../App';
+import { useGifts, useMessage } from '../../App';
 import { Loader } from '../../components/Loader';
+import { Notification } from '../../components/Notification';
+import { ErrorType } from '../../types/ErrorType';
 
 export const ResultPage: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const { gifts, setGifts } = useGifts();
+  const { message, setMessage } = useMessage();
   const { count, next, previous, results } = gifts;
   const emptyGifts = {
     count: 0,
@@ -16,11 +20,14 @@ export const ResultPage: React.FC = () => {
   };
 
   const getGifts = async (str: string) => {
+    setLoading(true);
     try {
-      const { data } = await getGiftsFromServer(str.slice(35));
+      const { data } = await getGiftsFromServer(str.split('?')[1]);
+      setLoading(false);
       setGifts(data);
     } catch (error) {
-      console.log(error);
+      setLoading(false);
+      setMessage(ErrorType.LoadGift);
     }
   };
   return (
@@ -60,7 +67,7 @@ export const ResultPage: React.FC = () => {
               </Card>
             ))
           ) : (
-            <Loader />
+            loading && <Loader />
           )}
         </div>
         {count > 4 && (
@@ -80,6 +87,8 @@ export const ResultPage: React.FC = () => {
           Try again
         </Link>
       </div>
+
+      {!!message && <Notification />}
     </div>
   );
 };

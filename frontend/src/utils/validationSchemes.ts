@@ -1,26 +1,27 @@
 import * as yup from 'yup';
 
 export const validationSchema = yup.object().shape({
-  firstName: yup.string().required('First name is required').max(75, 'Max length - 75 symbols'),
-  lastName: yup.string().required('Last name is required').max(75, 'Max length - 75 symbols'),
+  firstName: yup
+    .string()
+    .required('This field may not be blank.')
+    .max(75, 'Ensure this field has no more than 75 characters.'),
+  lastName: yup
+    .string()
+    .required('This field may not be blank.')
+    .max(75, 'Ensure this field has no more than 75 characters.'),
   email: yup
     .string()
-    .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, 'Please enter email in right format')
-    .required('Email is required')
-    .max(254, 'Max length - 254 symbols'),
+    .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, 'Enter a valid email address.')
+    .required('This field may not be blank.'),
   password: yup
     .string()
-    .min(8, 'Your password must be at least 8 characters long')
-    .max(128, 'Max length - 128 symbols')
+    .min(8, 'Ensure this field has at least 8 characters.')
+    .max(128, 'Ensure this field has no more than 128 characters.')
     .matches(/[a-zA-Z]/g, 'Your password must contain at least one letter')
-    .required('Password is required')
-    .notOneOf(
-      [yup.ref('firstName'), yup.ref('lastName'), yup.ref('email')],
-      "Your password can't be too similar to your other personal information"
-    ),
+    .required('This field may not be blank.'),
   repeatPassword: yup
     .string()
-    .required('Confirm Password is required')
+    .required('This field may not be blank.')
     .oneOf([yup.ref('password')], 'Please enter the same password as above.')
 });
 
