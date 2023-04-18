@@ -9,8 +9,8 @@ from rest_framework import serializers
 class UserSerializer(serializers.ModelSerializer):
     """User (customer) model."""
 
-    first_name = serializers.CharField(required=True)
-    last_name = serializers.CharField(required=True)
+    first_name = serializers.CharField(required=True, max_length=75)
+    last_name = serializers.CharField(required=True, max_length=75)
 
     class Meta:
         model = get_user_model()
