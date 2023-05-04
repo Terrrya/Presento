@@ -1,0 +1,43 @@
+version: "3"
+services:
+    app:
+        build:
+            context: .
+        expose:
+            - 8000
+        volumes:
+            - ./:/app
+        command: >
+            sh -c "python manage.py collectstatic --no-input &&
+                   python manage.py migrate &&
+                   gunicorn presento_service.wsgi:application --bind 0.0.0.0:8000"
+        env_file:
+            - .env
+        restart: always
+
+    front:
+        build:
+            context: ./frontend
+        expose:
+            - 3000
+        volumes:
+            - /app/node_modules
+            - ./frontend:/app
+        command: >
+            sh -c "npm start"
+        depends_on:
+            -   app
+        env_file:
+            - .env
+        restart: always
+
+    nginx:
+        build: ./nginx
+        ports:
+            - "80:80"
+        depends_on:
+            - app
+            - front
+        volumes:
+            -  ./staticfiles:/static
+        restart: always

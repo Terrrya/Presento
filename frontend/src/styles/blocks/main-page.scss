@@ -1,0 +1,91 @@
+.main-page {
+  &__info {
+    display: flex;
+    flex-direction: column;
+
+    @include onTablet {
+      gap: 56px;
+    }
+
+    @include onSmallDesktop {
+      gap: 84px;
+      max-width: 440px;
+    }
+  }
+
+  &__title {
+    @extend %Domine700;
+    font-size: 36px;
+    line-height: 120%;
+    color: $dark-blue;
+    letter-spacing: -0.01em;
+    text-align: center;
+
+    @include onTablet {
+      font-size: 46px;
+    }
+
+    @include onSmallDesktop {
+      font-size: 46px;
+    }
+
+    @include onDesktop {
+      font-size: 52px;
+    }
+
+    &--italic {
+      line-height: 150%;
+      font-style: italic;
+    }
+  }
+
+  &__description {
+    margin-top: 32px;
+
+    @include onTablet {
+      margin-top: 24px;
+    }
+
+    @include onSmallDesktop {
+      margin-top: 32px;
+      font-size: 20px;
+    }
+
+    @include onDesktop {
+      margin-top: 32px;
+      font-size: 24px;
+    }
+
+    @extend %Anuphan400;
+    font-size: 24px;
+    line-height: 150%;
+    text-align:justify;
+  }
+
+  &__button {
+    height: 56px;
+  }
+
+  &__slider {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 35vh;
+
+    @include onTablet {
+      height: 390px;
+    }
+    
+    @include onSmallDesktop {
+      top: 220px;
+      bottom: 0;
+      height: auto;
+      left: 55%;
+    }
+
+    @include onDesktop {
+      left: 50%;
+    }
+  }
+}

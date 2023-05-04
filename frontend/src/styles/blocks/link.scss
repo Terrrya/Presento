@@ -1,0 +1,6 @@
+.link {
+  font-size: 20px;
+  text-decoration: underline;
+  color: $dark-blue;
+  @include hover(color, $accent-orange);
+}

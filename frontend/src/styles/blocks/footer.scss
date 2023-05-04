@@ -1,0 +1,58 @@
+.footer {
+  padding: 16px 0;
+  background: #eee;
+
+  &__content {
+    display: flex;
+    justify-content: end;
+  }
+
+  &__link-continer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__link {
+    font-size: 42px;
+
+    &--1 {
+      color: #0d6efd;
+      &:hover {
+        color: #215fbb;
+      }
+    }
+
+    &--2 {
+      color: #a83371;
+      &:hover {
+        color: #8d1c58;
+      }
+    }
+
+    &--3 {
+      color: #27852d;
+      &:hover {
+        color: #1a5b1e;
+      }
+    }
+  }
+
+  &__img-continer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+  }
+
+  &__img {
+    height: 30px;
+  }
+}

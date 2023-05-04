@@ -1,0 +1,54 @@
+version: "3"
+services:
+    app:
+        build:
+            dockerfile: ./Dockerfile_local
+            context: .
+        ports:
+            - "8000:8000"
+        volumes:
+            - ./:/app
+        command: >
+            sh -c "python manage.py wait_for_db &&
+                   python manage.py migrate &&
+                   python manage.py runserver 0.0.0.0:8000"
+        env_file:
+            - .env
+        depends_on:
+            - db
+        restart: always
+
+    db:
+        image: postgres:15-alpine
+        ports:
+            - "5432:5432"
+        env_file:
+            - .env
+        restart: always
+
+    front:
+        build:
+            context: ./frontend
+        ports:
+            - "3000:3000"
+        volumes:
+            - /app/node_modules
+            - ./frontend:/app
+        command: >
+            sh -c "npm start"
+        depends_on:
+            -   app
+        env_file:
+            - .env
+        restart: always
+
+    nginx:
+        build: ./nginx
+        ports:
+            - "80:80"
+        depends_on:
+            - app
+            - front
+        volumes:
+            -  ./staticfiles:/static
+        restart: always
