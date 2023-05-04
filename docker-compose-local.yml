@@ -10,11 +10,12 @@ services:
         command: >
             sh -c "python manage.py wait_for_db &&
                    python manage.py migrate &&
-                   nohup python manage.py runserver 0.0.0.0:8000"
+                   python manage.py runserver 0.0.0.0:8000"
         env_file:
             - .env
         depends_on:
             - db
+        restart: always
 
     db:
         image: postgres:15-alpine
@@ -22,6 +23,7 @@ services:
             - "5432:5432"
         env_file:
             - .env
+        restart: always
 
     front:
         build:
